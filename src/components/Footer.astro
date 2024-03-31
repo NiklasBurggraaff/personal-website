@@ -25,13 +25,13 @@ const today = new Date();
                     <ModeToggle client:idle />
                 </div>
             </div>
-            <p>
+            <p class="font-body">
                 &copy; {today.getFullYear()} Niklas Burggraaff
             </p>
         </div>
         <div
             class:list={[
-                "order-last flex flex-grow flex-wrap gap-4 print:hidden",
+                "order-last flex flex-grow flex-wrap gap-4 print:hidden font-body",
                 "xs:col-span-2 xs:justify-center xs:gap-8 md:order-none md:col-span-1",
             ]}
         >

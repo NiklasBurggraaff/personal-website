@@ -38,11 +38,11 @@ const groupedEntries = entries.reduce(
                 {entries.map(({ slug, data: { index, title, description } }) => (
                     <li
                         class="flex-1 flex group
-                        transition-transform hover:rotate-1 hover:scale-105 hover:shadow-lg
+                        transition-transform hover:rotate-1 hover:scale-105
                         motion-reduce:transition-none motion-reduce:group-hover:transform-none"
                     >
                         <div class="py-4 pr-2 border-lighter">
-                            <span class="font-mono top-0 text-xl text-base-500 md:text-2xl group-hover:brightness-125 group-hover:text-inherit">
+                            <span class="font-mono top-0 text-xl text-base-500 md:text-2xl group-hover:brightness-125 group-hover:shadow-lg group-hover:text-inherit">
                                 [{index}]
                             </span>
                         </div>

@@ -6,7 +6,7 @@ import { Twitter, Linkedin, Github, Gitlab } from "lucide";
 
 <header
     class:list={[
-        "bg-darker relative flex h-16 w-full items-center justify-center px-4 py-2 shadow-md sm:px-8",
+        "sticky top-0 bg-darker relative flex h-16 w-full items-center justify-center px-4 py-2 shadow-md sm:px-8",
         "z-30 print:border-b-4 print:border-base-300 print:shadow-none",
     ]}
 >
@@ -60,13 +60,15 @@ import { Twitter, Linkedin, Github, Gitlab } from "lucide";
             <a href="/" class="whitespace-nowrap p-2 font-mono text-xl sm:hidden">NB</a>
         </div>
         <div class="flex items-center md:col-span-2">
-            <div class="flex items-center justify-center gap-1 rounded-lg p-1 text-base xs:text-lg">
+            <div
+                class="flex items-center justify-center gap-1 rounded-lg p-1 font-mono text-base xs:text-lg"
+            >
                 <HeaderLink href="/blog">Blog</HeaderLink>
                 <HeaderLink href="/projects">Projects</HeaderLink>
                 <HeaderLink href="/cv">CV</HeaderLink>
             </div>
         </div>
-        <div class="-mr-2 hidden items-center justify-end gap-2 print:hidden lg:flex">
+        <div class="-mr-2 hidden items-center justify-end gap-2 print:hidden lg:flex font-body">
             <script>
                 // Do not animate social linkns after transition
                 document.addEventListener("astro:after-swap", () => {
