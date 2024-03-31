@@ -1,0 +1,39 @@
+---
+import type { HTMLAttributes } from "astro/types";
+
+type Props = HTMLAttributes<"a"> & {
+    title: string;
+    description?: string;
+    viewTransitionPrefix?: string;
+};
+
+const { href, class: className, title, description, viewTransitionPrefix, ...props } = Astro.props;
+---
+
+<a
+    href={href}
+    class:list={[
+        "bg-lighter prose shadow-sm",
+        "z-10 max-w-xl flex-1 rounded-3xl p-8 xs:min-w-[320px]",
+        "group transition-transform hover:rotate-1 hover:scale-105 hover:shadow-lg",
+        "motion-reduce:transition-none motion-reduce:hover:transform-none",
+        "print:border-2 print:border-base-400 print:shadow-none",
+        className,
+    ]}
+    {...props}
+>
+    <slot name="header" />
+
+    <h5
+        class:list={[
+            "text-2xl before:content-['#_'] md:text-3xl",
+            "transition-colors group-hover:text-primary motion-reduce:group-hover:transform-none",
+        ]}
+        transition:name={viewTransitionPrefix ? `${viewTransitionPrefix}-title` : ""}
+    >
+        {title}
+    </h5>
+    {description && <p class="lead">{description}</p>}
+
+    <slot />
+</a>

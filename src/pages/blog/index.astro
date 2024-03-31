@@ -1,111 +1,66 @@
 ---
-import BaseHead from '../../components/BaseHead.astro';
-import Header from '../../components/Header.astro';
-import Footer from '../../components/Footer.astro';
-import { SITE_TITLE, SITE_DESCRIPTION } from '../../consts';
-import { getCollection } from 'astro:content';
-import FormattedDate from '../../components/FormattedDate.astro';
+import Layout from "../../layouts/Layout.astro";
+import { getCollection } from "astro:content";
+import LinkCard from "../../components/LinkCard.astro";
+import Prose from "../../components/Prose.astro";
 
-const posts = (await getCollection('blog')).sort(
-	(a, b) => a.data.pubDate.valueOf() - b.data.pubDate.valueOf()
+const posts = (await getCollection("blog")).sort(
+    (a, b) => b.data.pubDate.valueOf() - a.data.pubDate.valueOf()
 );
 ---
 
-<!doctype html>
-<html lang="en">
-	<head>
-		<BaseHead title={SITE_TITLE} description={SITE_DESCRIPTION} />
-		<style>
-			main {
-				width: 960px;
-			}
-			ul {
-				display: flex;
-				flex-wrap: wrap;
-				gap: 2rem;
-				list-style-type: none;
-				margin: 0;
-				padding: 0;
-			}
-			ul li {
-				width: calc(50% - 1rem);
-			}
-			ul li * {
-				text-decoration: none;
-				transition: 0.2s ease;
-			}
-			ul li:first-child {
-				width: 100%;
-				margin-bottom: 1rem;
-				text-align: center;
-			}
-			ul li:first-child img {
-				width: 100%;
-			}
-			ul li:first-child .title {
-				font-size: 2.369rem;
-			}
-			ul li img {
-				margin-bottom: 0.5rem;
-				border-radius: 12px;
-			}
-			ul li a {
-				display: block;
-			}
-			.title {
-				margin: 0;
-				color: rgb(var(--black));
-				line-height: 1;
-			}
-			.date {
-				margin: 0;
-				color: rgb(var(--gray));
-			}
-			ul li a:hover h4,
-			ul li a:hover .date {
-				color: rgb(var(--accent));
-			}
-			ul a:hover img {
-				box-shadow: var(--box-shadow);
-			}
-			@media (max-width: 720px) {
-				ul {
-					gap: 0.5em;
-				}
-				ul li {
-					width: 100%;
-					text-align: center;
-				}
-				ul li:first-child {
-					margin-bottom: 0;
-				}
-				ul li:first-child .title {
-					font-size: 1.563em;
-				}
-			}
-		</style>
-	</head>
-	<body>
-		<Header />
-		<main>
-			<section>
-				<ul>
-					{
-						posts.map((post) => (
-							<li>
-								<a href={`/blog/${post.slug}/`}>
-									<img width={720} height={360} src={post.data.heroImage} alt="" />
-									<h4 class="title">{post.data.title}</h4>
-									<p class="date">
-										<FormattedDate date={post.data.pubDate} />
-									</p>
-								</a>
-							</li>
-						))
-					}
-				</ul>
-			</section>
-		</main>
-		<Footer />
-	</body>
-</html>
+<Layout>
+	<Prose class="prose mx-auto my-16 px-8">
+		<h1 transition:name="blog-title">Blog</h1>
+	
+		<p class="lead">Please read my blog</p>
+	
+		<hr class="border-t-2" />
+	</Prose>
+	<section>
+        <ul class="mx-auto my-16 flex max-w-5xl flex-wrap justify-center gap-8 px-8">
+            {
+                posts.map(({ slug, data: {title, description, pubDate, series} }) => (
+					<LinkCard
+						href={"/blog/" + slug}
+						class="relative"
+						{title}
+						{description}
+						viewTransitionPrefix={slug}
+					>
+						<date
+							slot="header"
+							class="text-[0.8em] text-base-500"
+							transition:name={`${slug}-date`}
+							datetime={pubDate}
+						>
+							{pubDate.toLocaleDateString(undefined, {
+								day: "numeric",
+								month: "short",
+								year: "numeric",
+							})}
+						</date>
+						{series && (
+							<div
+								class="absolute left-2 top-2 -z-10 h-full w-full rounded-3xl bg-inherit
+								border border-base-300 dark:border-base-800
+								transition-transform group-hover:-rotate-2
+								motion-reduce:transition-none motion-reduce:hover:transform-none"
+							/>
+							<div
+								class="absolute left-1 top-1 -z-10 h-full w-full rounded-3xl bg-inherit
+								border border-base-300 dark:border-base-800
+								transition-transform group-hover:-rotate-1
+								motion-reduce:transition-none motion-reduce:hover:transform-none"
+							/>
+							<div
+								class="absolute left-0 top-0 -z-10 h-full w-full rounded-3xl
+								border border-base-300 dark:border-base-800 bg-inherit"
+							/>
+						)}
+					</LinkCard>
+                ))
+            }
+        </ul>
+    </section>
+</Layout>

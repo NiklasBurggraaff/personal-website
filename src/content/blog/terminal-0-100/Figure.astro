@@ -1,0 +1,15 @@
+---
+import { Image } from "astro:assets";
+
+type Props = {
+    src: string;
+    caption: string;
+};
+
+const { src, caption } = Astro.props;
+---
+
+<figure class="clear-both sm:float-right sm:m-4 sm:w-1/3">
+    <Image {src} alt={caption} inferSize={true} />
+    <figcaption aria-hidden="true">{caption}</figcaption>
+</figure>

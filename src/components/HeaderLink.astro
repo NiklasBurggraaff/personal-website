@@ -1,25 +1,33 @@
 ---
-import type { HTMLAttributes } from 'astro/types';
+import type { HTMLAttributes } from "astro/types";
 
-type Props = HTMLAttributes<'a'>;
+type Props = HTMLAttributes<"a">;
 
 const { href, class: className, ...props } = Astro.props;
 
 const { pathname } = Astro.url;
 const subpath = pathname.match(/[^\/]+/g);
-const isActive = href === pathname || href === '/' + subpath?.[0];
+const isActive = href === pathname || href === "/" + subpath?.[0];
 ---
 
-<a href={href} class:list={[className, { active: isActive }]} {...props}>
-	<slot />
+<a
+    href={href}
+    class:list={[
+        "group rounded-lg px-4 py-1 text-base-500 xs:px-6",
+        "hover:scale-105 hover:text-base-900 hover:brightness-125 hover:dark:text-base-100",
+        className,
+    ]}
+    {...props}
+>
+    <span class="relative">
+        <slot />
+        {
+            isActive && (
+                <div
+                    class="absolute h-0.5 w-full bg-primary"
+                    transition:name="nav-current-indicator"
+                />
+            )
+        }
+    </span>
 </a>
-<style>
-	a {
-		display: inline-block;
-		text-decoration: none;
-	}
-	a.active {
-		font-weight: bolder;
-		text-decoration: underline;
-	}
-</style>

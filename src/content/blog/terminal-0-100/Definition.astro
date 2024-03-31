@@ -1,0 +1,48 @@
+---
+import { BookA, History, BookOpenCheck } from "lucide";
+import LucideIcon from "../../../components/LucideIcon.astro";
+
+type Props = {
+    word: string;
+    type: "dictionary" | "historic" | "modern";
+    typeNumber?: number;
+    description: string;
+};
+
+const { word, type, typeNumber, description } = Astro.props;
+---
+
+<div
+    class:list={[
+        "prose clear-both my-4 rounded-xl bg-opacity-50 px-6 py-4 shadow-md",
+        "print:border-2 print:bg-inherit print:text-inherit print:shadow-none",
+        type === "dictionary" ? "bg-blue" : type === "historic" ? "bg-orange" : "bg-green",
+        "!border-l-8",
+        type === "dictionary"
+            ? "border-blue"
+            : type === "historic"
+              ? "border-orange"
+              : "border-green",
+    ]}
+    title={type.charAt(0).toUpperCase() + type.slice(1) + " definition of " + word}
+>
+    <div class="flex place-items-center gap-4 pl-2">
+        <span class="select-none">
+            <LucideIcon
+                icon={type === "dictionary" ? BookA : type === "historic" ? History : BookOpenCheck}
+                class="inline-block"
+            />
+            {
+                typeNumber && (
+                    <sup title={`Number indicating version of ${type} definition`}>
+                        {typeNumber}
+                    </sup>
+                )
+            }
+        </span>
+        <h5 class="font-bold" role="term">{word}</h5>
+    </div>
+    <div class="my-2 hidden border-t-[1px] border-inherit print:block"></div>
+    <hr class="!my-2 border-inherit print:hidden" />
+    <p role="definition">{description}</p>
+</div>

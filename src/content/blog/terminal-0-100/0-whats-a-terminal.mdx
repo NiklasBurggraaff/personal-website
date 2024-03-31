@@ -1,0 +1,101 @@
+---
+name: terminal-0-100-0
+title: 0. What's a terminal?
+description: Looking under the hood and into the past
+pubDate: 2023-12-30
+---
+import Definition from "./Definition.astro";
+import Figure from "./Figure.astro";
+
+This is the introduction to my Terminal 0 to 100 series guiding you to become and expert at using your terminal. To become and expert in a tool I believe you need to understand it under the hood.
+
+This is where I will start.
+
+> What is a terminal actually?
+
+Well that is simple:
+
+<Definition
+    word="Terminal"
+    type="modern"
+    description="A terminal (or terminal emulator to be specific) is a graphical user interface application that provides users a command line interface to interact with the shell, similar to a console."
+/>
+
+Thank you for reading and see you in the next part: [1. Running your first commands](.).
+
+<br/>
+
+> Hold on!
+
+That explanation probably just raised more questions than it answered. To answer those questions it's probably best to go all the way back to the beginning  when the first computers were built.
+
+We'll discover the origin and particularly semantic changes of these terms. Even if you know what they mean you may still learn something interesting. Along the way I'll hopefully also provide some motivation for why to still use a terminal. Although you probably already have reasons given you are reading this.
+
+## History of computers
+
+<Figure
+    src="https://penntoday.upenn.edu/sites/default/files/2021-02/SS7732016_7732016_12329974.jpg"
+    caption="Jean Bartik and Frances Spence operating the ENIAC's main control panel"
+/>
+
+The ENIAC (1946) was the first general purpose computer. It was programmed by setting switches and connecting wires on the numerous panels. Card punch readers and card punch machines were used to provide the inputs and outputs for the program. ([https://www.youtube.com/watch?v=bGk9W65vXNA](https://www.youtube.com/watch?v=bGk9W65vXNA))
+
+With the release of the UNIVAC I (1951) it no longer needed to be programmed with physical switches and wires. Instead the instructions to execute by the computer were stored in memory with the data ([https://en.wikipedia.org/wiki/UNIVAC_I](https://en.wikipedia.org/wiki/UNIVAC_I)), an idea introduced by John von Neumann ([https://en.wikipedia.org/wiki/Von_Neumann_architecture](https://en.wikipedia.org/wiki/Von_Neumann_architecture)) still used today.
+
+<Figure
+    src="https://upload.wikimedia.org/wikipedia/commons/5/55/Museum_of_Science%2C_Boston%2C_MA_-_IMG_3163.JPG"
+    caption="UNIVAC I control station, in Museum of Science, Boston"
+/>
+
+The panels of switches and wires was replaced with a new type of panel. It allowed an operator to control the computer and display the data stored in memory.
+
+<Definition
+    word="Console"
+    type="dictionary"
+    description="(noun) a panel or unit accommodating a set of controls for electronic or mechanical equipment"
+/>
+
+This panel became known as the operator console, a term based on the dictionary definition above.
+
+<Definition
+    word="Console"
+    type="historic"
+    typeNumber="1"
+    description="instrument panel containing the controls for a computer"
+/>
+
+<Figure
+    src="https://ub.fnwi.uva.nl/computermuseum/pictures/flexowriter.gif"
+    caption="Friden Flexowriter, model SFD, in UvA Computer Museum"
+/>
+
+Another device that was connected to computers was the teleprinter, also known as a teletypewriter, or TTY (linux reference on hover) for short.
+
+Initially a teleprinter could only be used to input data into the computer. Then the Whilrwind Mark I (1955) became the first computer to be able to print output results to a teleprinter.
+([https://en.wikipedia.org/wiki/Computer_terminal#History](https://en.wikipedia.org/wiki/Computer_terminal#History))
+
+<Definition
+    word="Terminal"
+    type="historic"
+    description="Device that can be used for entering data into, and transcribing data from, a computer"
+/>
+
+<Definition
+    word="Terminal"
+    type="dictionary"
+    description="(adj) forming or situated at the end of something"
+/>
+
+<Figure
+    src="https://dms-cf-05.dimu.org/image/022uLXdVQziG?filename=NTM TELE IBM 2012 59021.jpg"
+    caption="IBM 2260 terminal in front of an IBM 360/40"
+/>
+
+Then screen and keyboard making it look like a personal computer 1964.
+
+Man behind terminal with keyboard and screen.
+Man by operator console with switches and lights.
+
+80 character limit matches IBM punch card format ([https://en.wikipedia.org/wiki/IBM_2260](https://en.wikipedia.org/wiki/IBM_2260))
+
+### How a terminal worked

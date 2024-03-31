@@ -1,0 +1,55 @@
+---
+import type { HTMLAttributes } from "astro/types";
+
+type Props = HTMLAttributes<"div">;
+
+const { class: className, ...props } = Astro.props;
+---
+
+<div class:list={["prose dark:prose-invert", className]} {...props}>
+    <slot />
+</div>
+
+<style is:global>
+    .prose {
+        @apply prose-base print:!prose-sm md:prose-lg lg:prose-xl print:max-w-full;
+        @apply font-body prose-headings:font-mono prose-lead:font-mono;
+    }
+
+    @media screen {
+        .prose {
+            @apply dark:prose-invert;
+        }
+    }
+
+    .not-prose {
+        @apply font-default;
+    }
+
+    .prose a {
+        @apply no-underline hover:underline hover:brightness-125;
+    }
+    .prose :where(.prose > :first-child):not(:where([class~="not-prose"] *)) {
+        margin-top: 0 !important;
+    }
+
+    .prose :where(.prose > :last-child):not(:where([class~="not-prose"] *)) {
+        margin-bottom: 0 !important;
+    }
+
+    .prose :where(h1):not(:where([class~="not-prose"] *))::before {
+        content: "# ";
+    }
+
+    .prose :where(h2):not(:where([class~="not-prose"] *)):not(.subtitle)::before {
+        content: "## ";
+    }
+
+    .prose :where(h3):not(:where([class~="not-prose"] *))::before {
+        content: "### ";
+    }
+
+    .prose :where(h4):not(:where([class~="not-prose"] *))::before {
+        content: "#### ";
+    }
+</style>
