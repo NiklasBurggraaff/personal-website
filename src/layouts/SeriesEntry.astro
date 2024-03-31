@@ -1,0 +1,26 @@
+---
+import BlogPost from "./BlogPost.astro";
+
+type Props = {
+    index: number;
+    seriesTitle: string;
+    seriesSlug: string;
+    slug: string;
+    title: string;
+    description: string;
+    pubDate: Date;
+};
+
+const { index, seriesTitle, seriesSlug, ...props } = Astro.props;
+---
+
+<BlogPost {...props}>
+    {
+        index !== undefined && (
+            <div class="lead" slot="supertitle">
+                <a href={"/blog/" + seriesSlug}>{seriesTitle}</a>[{index}]
+            </div>
+        )
+    }
+    <slot />
+</BlogPost>

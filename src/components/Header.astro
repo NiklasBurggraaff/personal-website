@@ -67,21 +67,39 @@ import { Twitter, Linkedin, Github, Gitlab } from "lucide";
             </div>
         </div>
         <div class="-mr-2 hidden items-center justify-end gap-2 print:hidden lg:flex">
-            <HeaderSocialLink href="https://twitter.com/niklas_b9" icon={Twitter} text="Twitter" />
+            <script>
+                // Do not animate social linkns after transition
+                document.addEventListener("astro:after-swap", () => {
+                    const socialLinks = document.querySelectorAll(".social-link");
+
+                    socialLinks.forEach((card) => {
+                        card.classList.remove("social-link");
+                    });
+                });
+            </script>
+            <HeaderSocialLink
+                href="https://twitter.com/niklas_b9"
+                icon={Twitter}
+                text="Twitter"
+                index={0}
+            />
             <HeaderSocialLink
                 href="https://www.linkedin.com/in/niklas-burggraaff/"
                 icon={Linkedin}
                 text="LinkedIn"
+                index={1}
             />
             <HeaderSocialLink
                 href="https://github.com/NiklasBurggraaff"
                 icon={Github}
                 text="GitHub"
+                index={2}
             />
             <HeaderSocialLink
                 href="https://gitlab.com/NiklasBurggraaff"
                 icon={Gitlab}
                 text="GitLab"
+                index={3}
             />
         </div>
     </nav>

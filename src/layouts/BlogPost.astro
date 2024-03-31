@@ -1,33 +1,40 @@
 ---
-import type { CollectionEntry } from "astro:content";
 import Layout from "./Layout.astro";
 import Prose from "../components/Prose.astro";
 
-type Props = CollectionEntry<"blog">["data"];
+type Props = {
+    slug: string;
+    title: string;
+    description: string;
+    pubDate?: Date;
+};
 
-const { name, title, description, pubDate } = Astro.props;
+const { slug, title, description, pubDate } = Astro.props;
 ---
 
 <Layout>
     <article>
         <Prose class="mx-auto px-8 pb-16 pt-32 print:py-16 md:pt-48">
-            <h1 transition:name={`${name}-title`}>
+            <slot name="supertitle" />
+            <h1 transition:name={`${slug}-title`}>
                 {title}
             </h1>
             {description && <p class="lead">{description}</p>}
             <div>
                 <div>By Niklas Burggraaff</div>
-                <div class="text-[0.8em] text-base-500">
-                    <time datetime={pubDate.toDateString()}>
-                        {
-                            new Date(pubDate).toLocaleDateString(undefined, {
-                                day: "numeric",
-                                month: "short",
-                                year: "numeric",
-                            })
-                        }
-                    </time>
-                </div>
+                {
+                    pubDate && (
+                        <div class="text-[0.8em] text-base-500">
+                            <time datetime={pubDate.toDateString()}>
+                                {new Date(pubDate).toLocaleDateString(undefined, {
+                                    day: "numeric",
+                                    month: "short",
+                                    year: "numeric",
+                                })}
+                            </time>
+                        </div>
+                    )
+                }
             </div>
 
             <hr class="border-t-2" />

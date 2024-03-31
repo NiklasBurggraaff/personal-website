@@ -48,7 +48,17 @@ import Layout from "../layouts/Layout.astro";
     </div>
 
     <div class="px-6 xs:px-16 sm:px-32">
-        <section class="mx-auto flex max-w-7xl flex-wrap justify-center gap-8">
+        <section class="mx-auto flex max-w-7xl flex-col xs:flex-row flex-wrap justify-center gap-8">
+            <script>
+                // Do not animate home cards after transition
+                document.addEventListener("astro:after-swap", () => {
+                    const homeCards = document.querySelectorAll(".home-card");
+
+                    homeCards.forEach((card) => {
+                        card.classList.remove("home-card");
+                    });
+                });
+            </script>
             <HomeCard href="blog" title="Blog" description={"Please read my blog"} index={0}>
                 <p>I write about things to learn and share this with other people!</p>
             </HomeCard>

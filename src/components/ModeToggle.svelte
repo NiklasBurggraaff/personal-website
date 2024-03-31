@@ -17,13 +17,13 @@
             selected = "light";
             timeout = setTimeout(() => {
                 document.documentElement.classList.remove("dark");
-                link.href = link.href.slice(0, link.href.lastIndexOf("/")) + "/faviconLight.png";
+                link.href = "/faviconLight.png";
             }, 150);
         } else {
             selected = "dark";
             timeout = setTimeout(() => {
                 document.documentElement.classList.add("dark");
-                link.href = link.href.slice(0, link.href.lastIndexOf("/")) + "/faviconDark.png";
+                link.href = "/faviconDark.png";
             }, 150);
         }
     }

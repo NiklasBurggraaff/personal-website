@@ -1,0 +1,17 @@
+---
+import SeriesList from "../components/SeriesList.astro";
+
+type Props = {
+    frontmatter: {
+        title: string;
+    };
+};
+
+const {
+    frontmatter: { title },
+} = Astro.props;
+---
+
+<slot />
+
+<SeriesList series={title} />

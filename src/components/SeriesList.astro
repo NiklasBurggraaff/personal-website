@@ -1,0 +1,70 @@
+---
+import { getSeriesEntries } from "../content/loadContent";
+
+type Props = {
+    series: string;
+};
+
+const { series } = Astro.props;
+
+const { groups, entries } = await getSeriesEntries(series);
+
+const groupedEntries = entries.reduce(
+    (acc, entry) => {
+        let group = "";
+        for (const groupInfo of groups) {
+            if (entry.data.index >= groupInfo.start && entry.data.index <= groupInfo.end) {
+                group = groupInfo.name;
+                break;
+            }
+        }
+
+        if (!acc[group]) {
+            acc[group] = [];
+        }
+
+        acc[group].push(entry);
+        return acc;
+    },
+    {} as { [index: string]: typeof entries }
+);
+---
+
+{
+    Object.entries(groupedEntries).map(([group, entries]) => (
+        <div>
+            <h2>{group}</h2>
+            <ol class="flex flex-col gap-2 px-0 not-prose">
+                {entries.map(({ slug, data: { index, title, description } }) => (
+                    <li
+                        class="flex-1 flex group
+                        transition-transform hover:rotate-1 hover:scale-105 hover:shadow-lg
+                        motion-reduce:transition-none motion-reduce:group-hover:transform-none"
+                    >
+                        <div class="py-4 pr-2 border-lighter">
+                            <span class="font-mono top-0 text-xl text-base-500 md:text-2xl group-hover:brightness-125 group-hover:text-inherit">
+                                [{index}]
+                            </span>
+                        </div>
+                        <a
+                            href={"/blog/" + slug}
+                            class="flex-1 bg-lighter rounded-xl shadow-sm z-10 p-4 gap-4 !no-underline print:shadow-none"
+                        >
+                            <h5
+                                class="text-xl before:content-['#_'] md:text-2xl
+                                    font-mono
+                                    transition-colors group-hover:text-primary
+                                    motion-reduce:group-hover:transform-none"
+                                transition:name={`${slug}-title`}
+                            >
+                                {title}
+                            </h5>
+                            <div class="pt-2" />
+                            <p class="prose">{description}</p>
+                        </a>
+                    </li>
+                ))}
+            </ol>
+        </div>
+    ))
+}

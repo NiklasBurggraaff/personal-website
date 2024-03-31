@@ -14,19 +14,37 @@
 
 .bg-darker {
     @apply bg-base-300 dark:bg-base-900;
+    @apply print:border-2 print:border-base-400;
 }
 
 .bg-lighter {
     @apply bg-base-100 dark:bg-base-700;
+    @apply print:border-2 print:border-base-600;
+}
+
+.border-neutral,
+.border-darker,
+.border-lighter {
+    @apply print:!border-transparent print:!text-base-800;
+}
+
+.border-neutral {
+    @apply border-base-200 dark:border-base-800;
+}
+.border-darker {
+    @apply border-base-300 dark:border-base-900;
+}
+.border-lighter {
+    @apply border-base-100 dark:border-base-700;
 }
 
 @keyframes wait {
     from {
-        transform: translateY(4rem);
+        transform: translateY(var(--fly-in-y));
         opacity: 0.5;
     }
     to {
-        transform: translateY(4rem);
+        transform: translateY(var(--fly-in-y));
         opacity: 0.5;
     }
 }

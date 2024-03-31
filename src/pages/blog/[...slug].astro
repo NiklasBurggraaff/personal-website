@@ -1,20 +1,36 @@
 ---
-import { type CollectionEntry, getCollection } from 'astro:content';
-import BlogPost from '../../layouts/BlogPost.astro';
+import { type CollectionEntry } from "astro:content";
+import BlogPost from "../../layouts/BlogPost.astro";
+import { getAllPosts } from "../../content/loadContent";
+import SeriesEntry from "../../layouts/SeriesEntry.astro";
 
 export async function getStaticPaths() {
-	const posts = await getCollection('blog');
-	return posts.map((post) => ({
-		params: { slug: post.slug },
-		props: post,
-	}));
+    const posts = await getAllPosts();
+
+    return posts.map((post) => {
+        return {
+            params: {
+                slug: post.slug,
+            },
+            props: post,
+        };
+    });
 }
-type Props = CollectionEntry<'blog'>;
+type Props = CollectionEntry<"blog" | "series">;
 
 const post = Astro.props;
 const { Content } = await post.render();
 ---
 
-<BlogPost {...post.data}>
-	<Content />
-</BlogPost>
+{
+    post.data.series && !post.data.main ? (
+        // @ts-expect-error
+        <SeriesEntry slug={post.slug} {...post.data}>
+            <Content />
+        </SeriesEntry>
+    ) : (
+        <BlogPost slug={post.slug} {...post.data}>
+            <Content />
+        </BlogPost>
+    )
+}

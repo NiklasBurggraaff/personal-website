@@ -1,10 +1,10 @@
 ---
 import Layout from "../../layouts/Layout.astro";
-import { getCollection } from "astro:content";
 import LinkCard from "../../components/LinkCard.astro";
 import Prose from "../../components/Prose.astro";
+import { getMainPosts } from "../../content/loadContent";
 
-const posts = (await getCollection("blog")).sort(
+const posts = (await getMainPosts()).sort(
     (a, b) => b.data.pubDate.valueOf() - a.data.pubDate.valueOf()
 );
 ---
@@ -18,47 +18,52 @@ const posts = (await getCollection("blog")).sort(
 		<hr class="border-t-2" />
 	</Prose>
 	<section>
-        <ul class="mx-auto my-16 flex max-w-5xl flex-wrap justify-center gap-8 px-8">
+        <ul class="mx-auto my-16 grid md:grid-cols-2 max-w-5xl gap-8 px-8">
             {
                 posts.map(({ slug, data: {title, description, pubDate, series} }) => (
-					<LinkCard
-						href={"/blog/" + slug}
-						class="relative"
-						{title}
-						{description}
-						viewTransitionPrefix={slug}
-					>
-						<date
-							slot="header"
-							class="text-[0.8em] text-base-500"
-							transition:name={`${slug}-date`}
-							datetime={pubDate}
+					<li class="list-none flex justify-center">
+						<LinkCard
+							href={"/blog/" + slug}
+							class="relative flex-1"
+							{title}
+							{description}
+							viewTransitionPrefix={slug}
 						>
-							{pubDate.toLocaleDateString(undefined, {
-								day: "numeric",
-								month: "short",
-								year: "numeric",
-							})}
-						</date>
-						{series && (
-							<div
-								class="absolute left-2 top-2 -z-10 h-full w-full rounded-3xl bg-inherit
-								border border-base-300 dark:border-base-800
-								transition-transform group-hover:-rotate-2
-								motion-reduce:transition-none motion-reduce:hover:transform-none"
-							/>
-							<div
-								class="absolute left-1 top-1 -z-10 h-full w-full rounded-3xl bg-inherit
-								border border-base-300 dark:border-base-800
-								transition-transform group-hover:-rotate-1
-								motion-reduce:transition-none motion-reduce:hover:transform-none"
-							/>
-							<div
-								class="absolute left-0 top-0 -z-10 h-full w-full rounded-3xl
-								border border-base-300 dark:border-base-800 bg-inherit"
-							/>
-						)}
-					</LinkCard>
+							<date
+								slot="header"
+								class="text-[0.8em] text-base-500"
+								transition:name={`${slug}-date`}
+								datetime={pubDate}
+							>
+								{pubDate.toLocaleDateString(undefined, {
+									day: "numeric",
+									month: "short",
+									year: "numeric",
+								})}
+							</date>
+							{series && (
+								<div
+									class="absolute left-2 top-2 -z-10 h-full w-full rounded-3xl bg-inherit
+									border border-base-300 dark:border-base-800 select-none
+									transition-transform group-hover:-rotate-2
+									motion-reduce:transition-none motion-reduce:hover:transform-none"
+									aria-hidden="true"
+								/>
+								<div
+									class="absolute left-1 top-1 -z-10 h-full w-full rounded-3xl bg-inherit
+									border border-base-300 dark:border-base-800 select-none
+									transition-transform group-hover:-rotate-1
+									motion-reduce:transition-none motion-reduce:hover:transform-none"
+									aria-hidden="true"
+								/>
+								<div
+									class="absolute left-0 top-0 -z-10 h-full w-full rounded-3xl select-none
+									border border-base-300 dark:border-base-800 bg-inherit"
+									aria-hidden="true"
+								/>
+							)}
+						</LinkCard>
+					</li>
                 ))
             }
         </ul>
