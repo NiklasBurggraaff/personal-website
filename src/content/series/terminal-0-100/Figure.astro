@@ -7,7 +7,7 @@ type Props = {
 const { src, caption } = Astro.props;
 ---
 
-<figure class="clear-both sm:float-right sm:m-4 sm:w-1/3">
+<figure class="clear-both !m-4 sm:float-right sm:m-4 sm:w-1/3">
     <img {src} alt={caption} />
     <figcaption aria-hidden="true">{caption}</figcaption>
 </figure>

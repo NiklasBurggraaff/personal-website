@@ -23,6 +23,7 @@ const { word, type, typeNumber, description } = Astro.props;
             : type === "historic"
               ? "border-orange"
               : "border-green",
+        type === "dictionary" ? "selection:bg-base-500" : "",
     ]}
     title={type.charAt(0).toUpperCase() + type.slice(1) + " definition of " + word}
 >
