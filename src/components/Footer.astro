@@ -5,6 +5,18 @@ import ModeToggle from "./ModeToggle.svelte";
 const today = new Date();
 ---
 
+<script>
+    document.addEventListener("astro:before-swap", (ev) => {
+        const theme: "light" | "dark" = document.documentElement.classList.contains("dark")
+            ? "dark"
+            : "light";
+
+        if (theme === "light") {
+            ev.newDocument.documentElement.classList.remove("dark");
+        }
+    });
+</script>
+
 <footer
     class:list={[
         "bg-darker flex w-full items-center justify-center p-8 shadow-inner",
@@ -35,7 +47,7 @@ const today = new Date();
                 "xs:col-span-2 xs:justify-center xs:gap-8 md:order-none md:col-span-1",
             ]}
         >
-            <div class="flex-grow text-right">
+            <div class="flex-grow xs:text-right">
                 <h2 class="pb-2 font-mono text-xl">Tools</h2>
                 <p>
                     Developed with

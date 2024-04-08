@@ -6,7 +6,7 @@
     let timeout: NodeJS.Timeout | undefined = undefined;
 
     // On page load or when changing themes, best to add inline in `head` to avoid FOUC
-    function updateTheme() {
+    function updateTheme(immediate = false) {
         const link = document.querySelector("link[rel~='icon']") as HTMLLinkElement;
 
         if (timeout !== undefined) {
@@ -15,27 +15,32 @@
 
         if (localStorage.theme === "light") {
             selected = "light";
-            timeout = setTimeout(() => {
+            if (immediate) {
                 document.documentElement.classList.remove("dark");
-                link.href = "/faviconLight.png";
-            }, 150);
+                link.href = "/favicon-light.svg";
+            } else {
+                timeout = setTimeout(() => {
+                    document.documentElement.classList.remove("dark");
+                    link.href = "/faviconLight.png";
+                }, 150);
+            }
         } else {
             selected = "dark";
-            timeout = setTimeout(() => {
+            if (immediate) {
                 document.documentElement.classList.add("dark");
-                link.href = "/faviconDark.png";
-            }, 150);
+                link.href = "/favicon-dark.svg";
+            } else {
+                timeout = setTimeout(() => {
+                    document.documentElement.classList.add("dark");
+                    link.href = "/favicon-dark.svg";
+                }, 150);
+            }
         }
     }
 
     function toggleTheme() {
         const theme = selected === "dark" ? "light" : "dark";
-
-        if (theme === undefined) {
-            localStorage.removeItem("theme");
-        } else {
-            localStorage.theme = theme;
-        }
+        localStorage.theme = theme;
 
         updateTheme();
     }
