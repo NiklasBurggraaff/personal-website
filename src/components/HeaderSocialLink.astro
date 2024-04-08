@@ -5,21 +5,43 @@ import LucideIcon from "./LucideIcon.astro";
 
 type Props = HTMLAttributes<"a"> & {
     icon: IconNode;
-    text: string;
-    index: number;
+    text?: string;
+    index?: number;
 };
 
-const { href, icon, text, index } = Astro.props;
+const { href, icon, text, index, ...props } = Astro.props;
 ---
 
-<a
-    href={href}
-    target="_blank"
-    class="social-link block p-2 rounded-lg text-base-600 hover:bg-base-200 hover:dark:bg-base-800 dark:text-base-500"
-    style={{ "--animation-wait": `${0.5 + index * 0.1}s` }}
->
-    <LucideIcon icon={icon} class="h-5 w-5" />
-</a>
+{
+    href === undefined ? (
+        <div
+            class:list={[
+                "flex p-2 rounded-lg items-center text-base-600 dark:text-base-500",
+                "hover:bg-base-200 hover:brightness-125 focus:brightness-125 hover:dark:bg-base-800",
+                index !== undefined && "social-link",
+            ]}
+            style={{ "--animation-wait": `${0.5 + (index ?? 0) * 0.1}s` }}
+            {...props}
+        >
+            <LucideIcon icon={icon} class="h-5 w-5" aria-label={text} />
+        </div>
+    ) : (
+        <a
+            href={href}
+            target="_blank"
+            class:list={[
+                "flex p-2 rounded-lg items-center text-base-600 dark:text-base-500",
+                "hover:bg-base-200 hover:brightness-125 focus:brightness-125 hover:dark:bg-base-800",
+                index !== undefined && "social-link",
+            ]}
+            style={{ "--animation-wait": `${0.5 + (index ?? 0) * 0.1}s` }}
+            {...props}
+        >
+            <LucideIcon icon={icon} class="h-5 w-5" aria-hidden="true" />
+            {text !== undefined && <span class="ml-2">{text}</span>}
+        </a>
+    )
+}
 
 <style>
     .social-link {

@@ -27,7 +27,7 @@ const { class: className, ...props } = Astro.props;
     }
 
     .prose a {
-        @apply no-underline hover:underline hover:brightness-125;
+        @apply no-underline hover:underline hover:brightness-125 focus:brightness-125;
     }
     .prose :where(.prose > :first-child):not(:where([class~="not-prose"] *)) {
         margin-top: 0 !important;

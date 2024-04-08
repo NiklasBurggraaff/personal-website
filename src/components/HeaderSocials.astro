@@ -1,80 +1,214 @@
 ---
 import HeaderSocialLink from "./HeaderSocialLink.astro";
 import { Twitter, Linkedin, Github, Gitlab, Ellipsis } from "lucide";
-import LucideIcon from "./LucideIcon.astro";
+
+const socialItems = [
+    { title: "Twitter", link: "https://twitter.com/niklas_b9", icon: Twitter },
+    { title: "LinkedIn", link: "https://www.linkedin.com/in/niklas-burggraaff/", icon: Linkedin },
+    { title: "GitHub", link: "https://github.com/NiklasBurggraaff", icon: Github },
+    { title: "GitLab", link: "https://gitlab.com/NiklasBurggraaff", icon: Gitlab },
+];
 ---
 
-<LucideIcon icon={Ellipsis} class="h-5 w-5 m-4" />
-<div class="hidden items-center justify-end gap-2 pr-2 print:hidden lg:flex font-body">
-    <script>
-        // Do not animate social linkns after transition
-        document.addEventListener("astro:after-swap", () => {
-            const socialLinks = document.querySelectorAll(".social-link");
-
-            socialLinks.forEach((card) => {
-                card.classList.remove("social-link");
-            });
-        });
-    </script>
-    <HeaderSocialLink
-        href="https://twitter.com/niklas_b9"
-        icon={Twitter}
-        text="Twitter"
-        index={0}
-    />
-    <HeaderSocialLink
-        href="https://www.linkedin.com/in/niklas-burggraaff/"
-        icon={Linkedin}
-        text="LinkedIn"
-        index={1}
-    />
-    <HeaderSocialLink
-        href="https://github.com/NiklasBurggraaff"
-        icon={Github}
-        text="GitHub"
-        index={2}
-    />
-    <HeaderSocialLink
-        href="https://gitlab.com/NiklasBurggraaff"
-        icon={Gitlab}
-        text="GitLab"
-        index={3}
-    />
+<div class="flex items-center pr-2 lg:hidden print:hidden">
+    <div id="social-menu-container" class="relative h-9">
+        <button
+            id="social-menu-button"
+            aria-haspopup="menu"
+            aria-controls="social-menu"
+            aria-expanded="false"
+        >
+            <HeaderSocialLink icon={Ellipsis} index={0} />
+        </button>
+        <ul
+            class="flex flex-col absolute right-0 top-11 bg-lighter p-1 border-lighter rounded-lg"
+            id="social-menu"
+            role="menu"
+            aria-labelledby="social-menu-button"
+        >
+            <div class="absolute -top-2 right-0 flex justify-center w-10 px-auto overflow-hidden">
+                <div>
+                    <div
+                        class="flex-1 h-2 w-2 origin-bottom-left rotate-45 bg-base-100 dark:bg-base-700"
+                    >
+                    </div>
+                </div>
+            </div>
+            {
+                socialItems.map((item) => (
+                    <li role="presentation">
+                        <HeaderSocialLink
+                            id={item.title}
+                            role="menuitem"
+                            tabindex="-1"
+                            href={item.link}
+                            icon={item.icon}
+                            text={item.title}
+                        />
+                    </li>
+                ))
+            }
+        </ul>
+    </div>
 </div>
 
-<!-- <Dropdown class="p-2 print:hidden lg:hidden" bind:showDialog={showLinksDialog}>
-            <div class="h-6 w-6">
-                {#if mounted}
-                    <div
-                        in:fly={{
-                            y: -25,
-                            duration: homeAnimationStateValue === "done" ? 0 : 250,
-                        }}
-                    >
-                        <Link class="h-6 w-6" />
-                    </div>
-                {/if}
-            </div>
-            <span slot="dropdown">
-                {#if showLinksDialog || reducedMotionValue}
-                    <ul>
-                        {#each socialItems as item, i}
-                            <li
-                                class="rounded-lg hover:scale-105 hover:text-primary hover:underline"
-                                in:slide={{ delay: i * 30 }}
-                            >
-                                <a
-                                    href={item.link}
-                                    target="_blank"
-                                    class="flex items-center justify-start gap-4 p-2"
-                                    in:slide={{ delay: i * 30, axis: "x" }}
-                                >
-                                    <svelte:component this={item.icon} class="h-6 w-6 origin-left" />
-                                    <p>{item.text}</p>
-                                </a>
-                            </li>
-                        {/each}
-                    </ul>
-                {/if}
-            </span>
-        </Dropdown> -->
+<div class="hidden items-center justify-end gap-2 pr-2 lg:flex font-body">
+    {socialItems.map((item, i) => <HeaderSocialLink href={item.link} icon={item.icon} index={i} />)}
+</div>
+
+<style is:global>
+    [role="menu"] {
+        visibility: hidden;
+        opacity: 0;
+        transform-origin: top right;
+        scale: 0.95;
+        transition: all 200ms ease-in-out;
+    }
+
+    [aria-expanded="true"] + [role="menu"] {
+        visibility: visible;
+        opacity: 1;
+        scale: 1;
+    }
+
+    @media (prefers-reduced-motion) {
+        [role="menu"] {
+            transition: none;
+        }
+    }
+</style>
+
+<script is:inline>
+    function isLetter(str) {
+        return str.length === 1 && str.match(/[a-z]/i);
+    }
+
+    // Do not animate social linkns after transition
+    document.addEventListener("astro:after-swap", () => {
+        const socialLinks = document.querySelectorAll(".social-link");
+
+        socialLinks.forEach((card) => {
+            card.classList.remove("social-link");
+        });
+    });
+
+    document.addEventListener("astro:page-load", () => {
+        const socialMenuContainer = document.getElementById("social-menu-container");
+        const menuButton = document.getElementById("social-menu-button");
+        const menu = document.getElementById("social-menu");
+        const menuItems = [];
+
+        let timer;
+
+        function toggleMenu(value) {
+            const state = menuButton.ariaExpanded === "true";
+            if (state === value) {
+                return;
+            }
+            menuButton.ariaExpanded = !state ? "true" : "false";
+        }
+
+        function searchMenuItem(startIndex, key) {
+            for (let i = key === -1 ? 0 : 1; i < menuItems.length; i++) {
+                const index = key === -1 ? i : (startIndex + i) % menuItems.length;
+                if (
+                    menuItems[index].textContent.substring(0, 1).toLowerCase() === key.toLowerCase()
+                ) {
+                    menuItems[index].focus();
+                    return true;
+                }
+            }
+
+            return false;
+        }
+
+        let socialItems = document.querySelectorAll("[role='menuitem']");
+        for (let i = 0; i < socialItems.length; i++) {
+            const item = document.getElementById(socialItems[i].id);
+            menuItems.push(item);
+        }
+
+        menuButton.addEventListener("click", (event) => {
+            event.preventDefault();
+            toggleMenu();
+        });
+        menuButton.addEventListener("keydown", (event) => {
+            // When focused, selecting Enter, Space, Down Arrow, or the Up Arrow should open the menu and place focus on a menu item.
+            if (event.key === "Enter" || event.key === " ") {
+                event.preventDefault();
+                toggleMenu();
+                menuItems[0].focus();
+            } else if (event.key === "ArrowDown") {
+                event.preventDefault();
+                toggleMenu(true);
+                menuItems[0].focus();
+            } else if (event.key === "ArrowUp") {
+                event.preventDefault();
+                toggleMenu(true);
+                menuItems[menuItems.length - 1].focus();
+            }
+        });
+
+        menuItems.forEach((item, index) => {
+            item.addEventListener("keydown", (event) => {
+                if (event.key === "Escape") {
+                    // Close the menu that contains focus and return focus to the element or context, e.g., menu button or parent menuitem, from which the menu was opened.
+                    event.preventDefault();
+                    toggleMenu(false);
+                    menuButton.focus();
+                } else if (event.key === "ArrowUp") {
+                    // Moves focus to the previous item, optionally wrapping from the first to the last.
+                    event.preventDefault();
+                    const i = index === 0 ? 0 : index - 1;
+                    // const i = index === 0 ? menuItems.length - 1 : index - 1;
+                    menuItems[i].focus();
+                } else if (event.key === "ArrowDown") {
+                    // ... moves focus to the next item, optionally wrapping from the last to the first.
+                    // Right Arrow: If in a menu opened with a menubutton and not in a menubar, if the menuitem does not have a submenu, does nothing.
+                    event.preventDefault();
+                    const i = index === menuItems.length - 1 ? menuItems.length - 1 : index + 1;
+                    // const i = index === menuItems.length - 1 ? 0 : index + 1;
+                    menuItems[i].focus();
+                } else if (event.key === "Home") {
+                    // If arrow key wrapping is not supported, moves focus to the first item in the current menu or menubar.
+                    event.preventDefault();
+                    menuItems[0].focus();
+                } else if (event.key === "End") {
+                    // If arrow key wrapping is not supported, moves focus to the last item in the current menu or menubar.
+                    event.preventDefault();
+                    menuItems[menuItems.length - 1].focus();
+                } else if (isLetter(event.key)) {
+                    if (searchMenuItem(index, event.key)) {
+                        event.preventDefault();
+                    }
+                }
+            });
+        });
+
+        // Tab: Moves focus to the next element in the tab sequence, and if the item that had focus is not in a menubar, closes its menu and all open parent menu containers.
+        // Shift + Tab: Moves focus to the previous element in the tab sequence, and if the item that had focus is not in a menubar, closes its menu and all open parent menu containers.
+        socialMenuContainer.addEventListener("focusout", (event) => {
+            requestAnimationFrame(() => {
+                if (!menu.contains(document.activeElement)) {
+                    menuButton.ariaExpanded = "false";
+                    event.preventDefault();
+                }
+            });
+        });
+
+        function mouseoverMenu() {
+            clearTimeout(timer);
+            menuButton.ariaExpanded = "true";
+        }
+        function mouseoutMenu() {
+            timer = setTimeout(() => {
+                menuButton.ariaExpanded = "false";
+            }, 100);
+        }
+
+        menuButton.addEventListener("mouseover", mouseoverMenu);
+        menuButton.addEventListener("mouseout", mouseoutMenu);
+        menu.addEventListener("mouseover", mouseoverMenu);
+        menu.addEventListener("mouseout", mouseoutMenu);
+    });
+</script>

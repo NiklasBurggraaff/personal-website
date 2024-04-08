@@ -18,7 +18,7 @@ const isActive = href === pathname || href === "/" + subpath?.[0];
     href={href}
     class:list={[
         "group flex items-center gap-1 xs:gap-2 h-full px-2 py-3 text-base-500 font-mono xs:px-4",
-        "hover:text-base-900 hover:dark:text-base-100",
+        "hover:brightness-125 focus:brightness-125",
         isActive ? "bg-neutral" : "",
         className,
     ]}

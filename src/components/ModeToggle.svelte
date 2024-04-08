@@ -63,9 +63,13 @@
     )}
     title={`Toggle to ${selected === "dark" ? "light" : "dark"} mode`}
     on:click={() => toggleTheme()}
+    type="button"
+    role="switch"
+    aria-checked={selected === "dark"}
+    aria-label="Dark mode toggle"
 >
-    <Moon class="z-10 h-5 w-5" />
-    <Sun class="z-10 h-5 w-5" />
+    <Moon class="z-10 h-5 w-5" aria-hidden="true" />
+    <Sun class="z-10 h-5 w-5" aria-hidden="true" />
     <div
         class={clsx(
             "absolute left-0.5 top-0.5 h-8 w-8 rounded-full shadow-lg",
@@ -75,5 +79,6 @@
                 "translate-x-9": selected === "light",
             }
         )}
+        aria-hidden="true"
     />
 </button>
