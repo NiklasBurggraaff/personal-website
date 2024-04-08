@@ -20,13 +20,13 @@ const today = new Date();
 <footer
     class:list={[
         "flex w-full items-center justify-center p-8 shadow-inner border-t-2 border-lighter",
-        "z-20 print:border-t-4 print:border-base-300 print:shadow-none",
+        "z-20 print:shadow-none",
     ]}
 >
     <div
         class:list={[
             "flex w-full max-w-6xl flex-wrap justify-between gap-x-16 gap-y-8",
-            "sm:flex-row md:flex-nowrap lg:grid lg:grid-cols-[1fr,auto,1fr]",
+            "sm:flex-row md:flex-nowrap lg:grid lg:grid-cols-[1fr,auto,1fr] print:lg:grid-cols-[1fr,1fr]",
         ]}
     >
         <div class="flex flex-grow flex-col gap-2 lg:justify-center">
@@ -43,7 +43,7 @@ const today = new Date();
         </div>
         <div
             class:list={[
-                "order-last flex flex-grow flex-wrap gap-4 print:hidden font-body",
+                "order-last flex flex-grow flex-wrap gap-4 font-body",
                 "xs:col-span-2 xs:justify-center xs:gap-8 md:order-none md:col-span-1",
             ]}
         >
@@ -62,7 +62,7 @@ const today = new Date();
                             name="astro"
                             height={12}
                             width={12}
-                            class="inline text-base-900 dark:text-base-100"
+                            class="inline text-base-900 dark:text-base-100 print:!text-base-900"
                         />
                     </a>
                     and
@@ -88,7 +88,7 @@ const today = new Date();
                             name="vercel"
                             height={12}
                             width={12}
-                            class="inline text-base-900 dark:text-base-100"
+                            class="inline text-base-900 dark:text-base-100 print:!text-base-900"
                         />
                     </a>
                 </p>

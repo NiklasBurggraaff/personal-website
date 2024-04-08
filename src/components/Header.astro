@@ -1,108 +1,24 @@
 ---
 import HeaderLink from "./HeaderLink.astro";
-import HeaderSocialLink from "./HeaderSocialLink.astro";
-import { Twitter, Linkedin, Github, Gitlab } from "lucide";
+import { Newspaper, FolderTree, GraduationCap, Home, Ellipsis } from "lucide";
+import HeaderSocials from "./HeaderSocials.astro";
 ---
 
 <header
     class:list={[
-        "sticky top-0 bg-darker relative flex h-16 w-full items-center justify-center px-4 py-2 shadow-md sm:px-8",
-        "z-30 print:border-b-4 print:border-base-300 print:shadow-none",
+        "sticky top-0 bg-darker relative flex h-12 w-full items-center justify-between",
+        "z-30 print:absolute print:shadow-none print:border-none",
     ]}
+    transition:animate="none"
 >
-    <nav class="flex w-full max-w-6xl items-center justify-between gap-4 sm:flex-nowrap">
-        <div class="-ml-2 flex h-12 items-center sm:justify-center md:justify-start">
-            <!-- <Dropdown class="p-2 print:hidden lg:hidden" bind:showDialog={showLinksDialog}>
-				<div class="h-6 w-6">
-					{#if mounted}
-						<div
-							in:fly={{
-								y: -25,
-								duration: homeAnimationStateValue === "done" ? 0 : 250,
-							}}
-						>
-							<Link class="h-6 w-6" />
-						</div>
-					{/if}
-				</div>
-				<span slot="dropdown">
-					{#if showLinksDialog || reducedMotionValue}
-						<ul>
-							{#each socialItems as item, i}
-								<li
-									class="rounded-lg hover:scale-105 hover:text-primary hover:underline"
-									in:slide={{ delay: i * 30 }}
-								>
-									<a
-										href={item.link}
-										target="_blank"
-										class="flex items-center justify-start gap-4 p-2"
-										in:slide={{ delay: i * 30, axis: "x" }}
-									>
-										<svelte:component this={item.icon} class="h-6 w-6 origin-left" />
-										<p>{item.text}</p>
-									</a>
-								</li>
-							{/each}
-						</ul>
-					{/if}
-				</span>
-			</Dropdown> -->
-            <a
-                href="/"
-                class:list={[
-                    "hidden whitespace-nowrap p-2 font-mono text-xl sm:block",
-                    "text-base-600 hover:!text-primary hover:brightness-125 dark:text-base-500",
-                ]}
-            >
-                Niklas Burggraaff
-            </a>
-            <a href="/" class="whitespace-nowrap p-2 font-mono text-xl sm:hidden">NB</a>
-        </div>
-        <div class="flex items-center md:col-span-2">
-            <div
-                class="flex items-center justify-center gap-1 rounded-lg p-1 font-mono text-base xs:text-lg"
-            >
-                <HeaderLink href="/blog">Blog</HeaderLink>
-                <HeaderLink href="/projects">Projects</HeaderLink>
-                <HeaderLink href="/cv">CV</HeaderLink>
-            </div>
-        </div>
-        <div class="-mr-2 hidden items-center justify-end gap-2 print:hidden lg:flex font-body">
-            <script>
-                // Do not animate social linkns after transition
-                document.addEventListener("astro:after-swap", () => {
-                    const socialLinks = document.querySelectorAll(".social-link");
-
-                    socialLinks.forEach((card) => {
-                        card.classList.remove("social-link");
-                    });
-                });
-            </script>
-            <HeaderSocialLink
-                href="https://twitter.com/niklas_b9"
-                icon={Twitter}
-                text="Twitter"
-                index={0}
-            />
-            <HeaderSocialLink
-                href="https://www.linkedin.com/in/niklas-burggraaff/"
-                icon={Linkedin}
-                text="LinkedIn"
-                index={1}
-            />
-            <HeaderSocialLink
-                href="https://github.com/NiklasBurggraaff"
-                icon={Github}
-                text="GitHub"
-                index={2}
-            />
-            <HeaderSocialLink
-                href="https://gitlab.com/NiklasBurggraaff"
-                icon={Gitlab}
-                text="GitLab"
-                index={3}
-            />
-        </div>
+    <nav class="h-full flex items-center">
+        <HeaderLink href="/" icon={Home} class="!px-4">
+            <span class="hidden xs:inline md:hidden">NB</span>
+            <span class="hidden md:inline">Niklas Burggraaff</span>
+        </HeaderLink>
+        <HeaderLink href="/blog" icon={Newspaper}> Blog </HeaderLink>
+        <HeaderLink href="/projects" icon={FolderTree}> Projects </HeaderLink>
+        <HeaderLink href="/cv" icon={GraduationCap}> CV </HeaderLink>
     </nav>
+    <HeaderSocials />
 </header>

@@ -15,7 +15,7 @@ const { word, type, typeNumber, description } = Astro.props;
 <div
     class:list={[
         "prose clear-both my-4 rounded-xl bg-opacity-50 px-6 py-4 shadow-md",
-        "print:border-2 print:bg-inherit print:text-inherit print:shadow-none",
+        "print:border-2 print:bg-inherit print:text-inherit print:shadow-none print:break-inside-avoid",
         type === "dictionary" ? "bg-blue" : type === "historic" ? "bg-orange" : "bg-green",
         "!border-l-8",
         type === "dictionary"

@@ -9,13 +9,13 @@ import redBull from "../../public/red-bull.png";
 
 <Layout>
     <div
-        class="relative flex w-full flex-col items-center justify-center px-4 py-24 md:px-8 min-h-[calc(100svh-4rem-5rem)] print:min-h-fit"
+        class="relative flex w-full flex-col items-center justify-center px-4 py-24 md:px-8 min-h-[calc(100svh-3rem-5rem)] print:min-h-fit"
     >
         <div
             class="flex flex-col gap-y-4 pb-4 sm:gap-y-5 sm:pb-5 md:gap-y-8 md:pb-8 font-mono text-4xl text-base-500 xs:text-5xl sm:text-6xl md:text-7xl lg:text-8xl"
         >
             <div
-                class="before:content-['0'] before:mr-[1em] sm:before:mr-[1.5em] before:text-4xl before:sm:text-5xl before:md:text-6xl before:lg:text-7xl flex before:invisible"
+                class="flex before:content-['0'] before:mr-[1em] sm:before:mr-[1.5em] before:text-4xl before:sm:text-5xl before:md:text-6xl before:lg:text-7xl before:invisible"
             >
                 <span
                     class="font-mono text-base-400 dark:text-base-600 text-base xs:text-xl sm:text-2xl md:text-3xl lg:text-4xl"
@@ -23,12 +23,12 @@ import redBull from "../../public/red-bull.png";
                 >
             </div>
             <div
-                class="before:content-['1'] before:mr-[1em] sm:before:mr-[1.5em] before:text-4xl before:sm:text-5xl before:md:text-6xl before:lg:text-7xl before:text-base-400 before:dark:text-base-600"
+                class="flex before:content-['1'] before:mr-[1em] sm:before:mr-[1.5em] before:text-4xl before:sm:text-5xl before:md:text-6xl before:lg:text-7xl before:text-base-400 before:dark:text-base-600"
             >
                 <span>Niklas</span>
             </div>
             <div
-                class="before:content-['2'] before:mr-[1em] sm:before:mr-[1.5em] before:text-4xl before:sm:text-5xl before:md:text-6xl before:lg:text-7xl before:text-base-800 before:dark:text-base-200"
+                class="flex before:content-['2'] before:mr-[1em] sm:before:mr-[1.5em] before:text-4xl before:sm:text-5xl before:md:text-6xl before:lg:text-7xl before:text-base-800 before:dark:text-base-200"
             >
                 <div
                     class="relative inline"
@@ -43,9 +43,7 @@ import redBull from "../../public/red-bull.png";
                         >Burggraaff</span
                     >
                 </div>
-                <span class="absolute select-none text-base-800 dark:text-base-200 animate-blink"
-                    >|</span
-                >
+                <span class="select-none text-base-800 dark:text-base-200 animate-blink">|</span>
             </div>
         </div>
     </div>
@@ -80,7 +78,7 @@ import redBull from "../../public/red-bull.png";
             >
                 <p>Experience throughout my education and career.</p>
                 <div
-                    class="absolute right-0 top-0 h-fit w-fit not-prose group-hover:block"
+                    class="absolute right-0 top-0 h-fit w-fit not-prose group-hover:block print:hidden"
                     aria-hidden="true"
                 >
                     <div
@@ -93,7 +91,7 @@ import redBull from "../../public/red-bull.png";
                         alt="Red Bull Racing logo"
                         width={128}
                         height={30}
-                        class="group-hover:-rotate-12 group-hover:-translate-y-16 transition-transform m-6 pointer-events-none"
+                        class="group-hover:rotate-12 group-hover:-translate-y-16 transition-transform m-6 pointer-events-none"
                         loading="lazy"
                     />
                 </div>

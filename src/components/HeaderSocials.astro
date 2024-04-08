@@ -1,0 +1,80 @@
+---
+import HeaderSocialLink from "./HeaderSocialLink.astro";
+import { Twitter, Linkedin, Github, Gitlab, Ellipsis } from "lucide";
+import LucideIcon from "./LucideIcon.astro";
+---
+
+<LucideIcon icon={Ellipsis} class="h-5 w-5 m-4" />
+<div class="hidden items-center justify-end gap-2 pr-2 print:hidden lg:flex font-body">
+    <script>
+        // Do not animate social linkns after transition
+        document.addEventListener("astro:after-swap", () => {
+            const socialLinks = document.querySelectorAll(".social-link");
+
+            socialLinks.forEach((card) => {
+                card.classList.remove("social-link");
+            });
+        });
+    </script>
+    <HeaderSocialLink
+        href="https://twitter.com/niklas_b9"
+        icon={Twitter}
+        text="Twitter"
+        index={0}
+    />
+    <HeaderSocialLink
+        href="https://www.linkedin.com/in/niklas-burggraaff/"
+        icon={Linkedin}
+        text="LinkedIn"
+        index={1}
+    />
+    <HeaderSocialLink
+        href="https://github.com/NiklasBurggraaff"
+        icon={Github}
+        text="GitHub"
+        index={2}
+    />
+    <HeaderSocialLink
+        href="https://gitlab.com/NiklasBurggraaff"
+        icon={Gitlab}
+        text="GitLab"
+        index={3}
+    />
+</div>
+
+<!-- <Dropdown class="p-2 print:hidden lg:hidden" bind:showDialog={showLinksDialog}>
+            <div class="h-6 w-6">
+                {#if mounted}
+                    <div
+                        in:fly={{
+                            y: -25,
+                            duration: homeAnimationStateValue === "done" ? 0 : 250,
+                        }}
+                    >
+                        <Link class="h-6 w-6" />
+                    </div>
+                {/if}
+            </div>
+            <span slot="dropdown">
+                {#if showLinksDialog || reducedMotionValue}
+                    <ul>
+                        {#each socialItems as item, i}
+                            <li
+                                class="rounded-lg hover:scale-105 hover:text-primary hover:underline"
+                                in:slide={{ delay: i * 30 }}
+                            >
+                                <a
+                                    href={item.link}
+                                    target="_blank"
+                                    class="flex items-center justify-start gap-4 p-2"
+                                    in:slide={{ delay: i * 30, axis: "x" }}
+                                >
+                                    <svelte:component this={item.icon} class="h-6 w-6 origin-left" />
+                                    <p>{item.text}</p>
+                                </a>
+                            </li>
+                        {/each}
+                    </ul>
+                {/if}
+            </span>
+        </Dropdown> -->

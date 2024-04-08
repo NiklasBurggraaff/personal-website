@@ -1,9 +1,13 @@
 ---
 import type { HTMLAttributes } from "astro/types";
+import LucideIcon from "./LucideIcon.astro";
+import type { IconNode } from "lucide";
 
-type Props = HTMLAttributes<"a">;
+type Props = HTMLAttributes<"a"> & {
+    icon?: IconNode;
+};
 
-const { href, class: className, ...props } = Astro.props;
+const { href, class: className, icon, ...props } = Astro.props;
 
 const { pathname } = Astro.url;
 const subpath = pathname.match(/[^\/]+/g);
@@ -13,21 +17,13 @@ const isActive = href === pathname || href === "/" + subpath?.[0];
 <a
     href={href}
     class:list={[
-        "group rounded-lg px-4 py-1 text-base-500 xs:px-6",
-        "hover:scale-105 hover:text-base-900 hover:brightness-125 hover:dark:text-base-100",
+        "group flex items-center gap-1 xs:gap-2 h-full px-2 py-3 text-base-500 font-mono xs:px-4",
+        "hover:text-base-900 hover:dark:text-base-100",
+        isActive ? "bg-neutral" : "",
         className,
     ]}
     {...props}
 >
-    <span class="relative">
-        <slot />
-        {
-            isActive && (
-                <div
-                    class="absolute h-0.5 w-full bg-primary"
-                    transition:name="nav-current-indicator"
-                />
-            )
-        }
-    </span>
+    {icon && <LucideIcon icon={icon} class="h-5 w-5" />}
+    <slot />
 </a>

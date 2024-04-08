@@ -1,5 +1,13 @@
-.dark {
-    color-scheme: dark;
+@media print {
+    astro-dev-toolbar {
+        display: none;
+    }
+}
+
+@media screen {
+    .dark {
+        color-scheme: dark;
+    }
 }
 
 .bg-neutral,
