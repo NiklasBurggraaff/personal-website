@@ -68,7 +68,7 @@
     <Sun class="z-10 h-5 w-5" />
     <div
         class={clsx(
-            "absolute left-1 top-1 h-7 w-7 rounded-full shadow-lg",
+            "absolute left-0.5 top-0.5 h-8 w-8 rounded-full shadow-lg",
             selected === "light" ? "bg-base-100" : "bg-base-700",
             {
                 "transition-[colors,transform]": selected !== undefined,
