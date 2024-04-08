@@ -14,7 +14,7 @@ type Props = {
 const { index, seriesTitle, seriesSlug, ...props } = Astro.props;
 ---
 
-<BlogPost {...props}>
+<BlogPost {...props} transitionAnimate="slide">
     {
         index !== undefined && (
             <div class="lead" slot="supertitle">

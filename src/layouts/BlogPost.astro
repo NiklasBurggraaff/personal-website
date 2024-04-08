@@ -1,4 +1,5 @@
 ---
+import type { ComponentProps } from "astro/types";
 import Layout from "./Layout.astro";
 import Prose from "../components/Prose.astro";
 
@@ -7,12 +8,12 @@ type Props = {
     title: string;
     description: string;
     pubDate?: Date;
-};
+} & ComponentProps<typeof Layout>;
 
-const { slug, title, description, pubDate } = Astro.props;
+const { slug, title, description, pubDate, ...props } = Astro.props;
 ---
 
-<Layout>
+<Layout {...props}>
     <article>
         <Prose class="mx-auto px-8 pb-16 pt-32 print:py-16 md:pt-48">
             <slot name="supertitle" />
