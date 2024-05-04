@@ -1,10 +1,23 @@
 ---
 import Prose from "../components/Prose.astro";
 import Layout from "./Layout.astro";
+
+type Props = {
+    title: string;
+    subtitle: string;
+    slug: string;
+};
+
+const { title, subtitle, slug } = Astro.props;
 ---
 
 <Layout>
     <Prose class="mx-auto px-8 py-16">
-        <slot />
+        <h1 transition:name={slug + "-title"}>{title}</h1>
+
+        <p class="lead">{subtitle}</p>
+
+        <hr class="border-t-2" />
     </Prose>
+    <slot />
 </Layout>

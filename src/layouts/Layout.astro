@@ -12,7 +12,7 @@ const transitionAnimate = Astro.props.transitionAnimate ?? "fade";
 ---
 
 <!doctype html>
-<html lang="en" class="dark" transition:animate={transitionAnimate}>
+<html lang="en" class="dark">
     <head>
         <BaseHead title={SITE_TITLE} description={SITE_DESCRIPTION} />
         <style>
@@ -30,7 +30,10 @@ const transitionAnimate = Astro.props.transitionAnimate ?? "fade";
             }
         </style>
     </head>
-    <body class="bg-neutral flex min-h-screen w-full min-w-fit flex-col">
+    <body
+        class="bg-neutral flex min-h-screen w-full min-w-fit flex-col"
+        transition:animate={transitionAnimate}
+    >
         <a
             class:list={[
                 "fixed left-2 z-50 -translate-y-16 transition focus:translate-y-0",

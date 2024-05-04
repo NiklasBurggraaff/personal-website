@@ -1,24 +1,20 @@
 ---
-import Layout from "../../layouts/Layout.astro";
+import Page from "../../layouts/Page.astro";
 import LinkCard from "../../components/LinkCard.astro";
 import Prose from "../../components/Prose.astro";
 import { getMainPosts } from "../../content/loadContent";
+import StatusLine from "../../components/StatusLine.astro";
+import { Newspaper } from "lucide";
 
 const posts = (await getMainPosts()).sort(
     (a, b) => b.data.pubDate.valueOf() - a.data.pubDate.valueOf()
 );
 ---
 
-<Layout>
-	<Prose class="prose mx-auto my-16 px-8">
-		<h1 transition:name="blog-title">Blog</h1>
-	
-		<p class="lead">Please read my blog</p>
-	
-		<hr class="border-t-2" />
-	</Prose>
-	<section>
-        <ul class="mx-auto my-16 grid md:grid-cols-2 max-w-5xl gap-8 px-8">
+<Page title="Blog" subtitle="Please read my blog" slug="blog">
+    <StatusLine mode="insert" section="Blog" sectionIcon={Newspaper} />
+	<section class="mb-16">
+        <ul class="mx-auto grid md:grid-cols-2 max-w-5xl gap-8 px-8">
             {
                 posts.map(({ slug, data: {title, description, pubDate, series} }) => (
 					<li class="list-none flex justify-center">
@@ -68,4 +64,4 @@ const posts = (await getMainPosts()).sort(
             }
         </ul>
     </section>
-</Layout>
+</Page>

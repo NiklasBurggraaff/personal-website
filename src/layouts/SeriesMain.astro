@@ -1,17 +1,18 @@
 ---
 import SeriesList from "../components/SeriesList.astro";
+import BlogPost from "./BlogPost.astro";
 
 type Props = {
-    frontmatter: {
-        title: string;
-    };
+    slug: string;
+    title: string;
+    description: string;
+    pubDate?: Date;
 };
 
-const {
-    frontmatter: { title },
-} = Astro.props;
+const { title, ...props } = Astro.props;
 ---
 
-<slot />
-
-<SeriesList series={title} />
+<BlogPost title={title} {...props} transitionAnimate="slide">
+    <slot />
+    <SeriesList series={title} />
+</BlogPost>

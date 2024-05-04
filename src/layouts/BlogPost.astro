@@ -2,6 +2,8 @@
 import type { ComponentProps } from "astro/types";
 import Layout from "./Layout.astro";
 import Prose from "../components/Prose.astro";
+import StatusLine from "../components/StatusLine.astro";
+import { Newspaper } from "lucide";
 
 type Props = {
     slug: string;
@@ -14,6 +16,13 @@ const { slug, title, description, pubDate, ...props } = Astro.props;
 ---
 
 <Layout {...props}>
+    <StatusLine
+        mode="insert"
+        section="Blog"
+        sectionIcon={Newspaper}
+        pageTitle={title}
+        headings={[]}
+    />
     <article>
         <Prose class="mx-auto px-8 pb-16 pt-32 print:py-16 md:pt-48">
             <slot name="supertitle" />

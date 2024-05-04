@@ -78,8 +78,8 @@ const socialItems = [
     }
 </style>
 
-<script is:inline>
-    function isLetter(str) {
+<script>
+    function isLetter(str: string) {
         return str.length === 1 && str.match(/[a-z]/i);
     }
 
@@ -93,14 +93,14 @@ const socialItems = [
     });
 
     document.addEventListener("astro:page-load", () => {
-        const socialMenuContainer = document.getElementById("social-menu-container");
-        const menuButton = document.getElementById("social-menu-button");
-        const menu = document.getElementById("social-menu");
-        const menuItems = [];
+        const socialMenuContainer = document.getElementById("social-menu-container")!;
+        const menuButton = document.getElementById("social-menu-button")!;
+        const menu = document.getElementById("social-menu")!;
+        const menuItems: Array<HTMLElement> = [];
 
-        let timer;
+        let timer: NodeJS.Timeout | undefined;
 
-        function toggleMenu(value) {
+        function toggleMenu(value?: boolean) {
             const state = menuButton.ariaExpanded === "true";
             if (state === value) {
                 return;
@@ -108,11 +108,12 @@ const socialItems = [
             menuButton.ariaExpanded = !state ? "true" : "false";
         }
 
-        function searchMenuItem(startIndex, key) {
-            for (let i = key === -1 ? 0 : 1; i < menuItems.length; i++) {
-                const index = key === -1 ? i : (startIndex + i) % menuItems.length;
+        function searchMenuItem(startIndex: number, key: string) {
+            for (let i = startIndex === -1 ? 0 : 1; i < menuItems.length; i++) {
+                const index = startIndex === -1 ? i : (startIndex + i) % menuItems.length;
                 if (
-                    menuItems[index].textContent.substring(0, 1).toLowerCase() === key.toLowerCase()
+                    menuItems[index].textContent!.substring(0, 1).toLowerCase() ===
+                    key.toLowerCase()
                 ) {
                     menuItems[index].focus();
                     return true;
@@ -124,7 +125,7 @@ const socialItems = [
 
         let socialItems = document.querySelectorAll("[role='menuitem']");
         for (let i = 0; i < socialItems.length; i++) {
-            const item = document.getElementById(socialItems[i].id);
+            const item = document.getElementById(socialItems[i].id)!;
             menuItems.push(item);
         }
 
@@ -146,6 +147,10 @@ const socialItems = [
                 event.preventDefault();
                 toggleMenu(true);
                 menuItems[menuItems.length - 1].focus();
+            } else if (isLetter(event.key)) {
+                if (searchMenuItem(-1, event.key)) {
+                    event.preventDefault();
+                }
             }
         });
 

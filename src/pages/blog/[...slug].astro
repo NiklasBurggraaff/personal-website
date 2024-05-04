@@ -3,6 +3,7 @@ import { type CollectionEntry } from "astro:content";
 import BlogPost from "../../layouts/BlogPost.astro";
 import { getAllPosts } from "../../content/loadContent";
 import SeriesEntry from "../../layouts/SeriesEntry.astro";
+import SeriesMain from "../../layouts/SeriesMain.astro";
 
 export async function getStaticPaths() {
     const posts = await getAllPosts();
@@ -23,11 +24,17 @@ const { Content } = await post.render();
 ---
 
 {
-    post.data.series && !post.data.main ? (
-        // @ts-expect-error
-        <SeriesEntry slug={post.slug} {...post.data}>
-            <Content />
-        </SeriesEntry>
+    post.data.series ? (
+        post.data.main ? (
+            <SeriesMain slug={post.slug} {...post.data}>
+                <Content />
+            </SeriesMain>
+        ) : (
+            // @ts-expect-error
+            <SeriesEntry slug={post.slug} {...post.data}>
+                <Content />
+            </SeriesEntry>
+        )
     ) : (
         <BlogPost slug={post.slug} {...post.data}>
             <Content />
