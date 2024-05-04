@@ -16,13 +16,6 @@ const { slug, title, description, pubDate, ...props } = Astro.props;
 ---
 
 <Layout {...props}>
-    <StatusLine
-        mode="insert"
-        section="Blog"
-        sectionIcon={Newspaper}
-        pageTitle={title}
-        headings={[]}
-    />
     <article>
         <Prose class="mx-auto px-8 pb-16 pt-32 print:py-16 md:pt-48">
             <slot name="supertitle" />
@@ -52,4 +45,11 @@ const { slug, title, description, pubDate, ...props } = Astro.props;
             <slot />
         </Prose>
     </article>
+    <StatusLine
+        mode="insert"
+        section="Blog"
+        sectionIcon={Newspaper}
+        pageTitle={title}
+        headings={[]}
+    />
 </Layout>

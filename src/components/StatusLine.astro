@@ -23,63 +23,67 @@ const modeBgClass =
 ---
 
 <div
-    class="sticky top-[calc(100svh-1.5rem)] overflow-clip w-full bg-darker grid grid-cols-[minmax(0,1fr),5rem] font-mono z-20"
+    class="sticky bottom-0 overflow-clip w-full bg-darker font-mono z-20"
     transition:name="status-line"
     transition:animate="fade"
 >
-    <div class="flex">
-        <div
-            class={`flex gap-4 px-4 items-center ${modeBgClass} text-base-900 dark:text-base-200 z-10`}
-        >
-            <LucideIcon icon={sectionIcon} class="h-4 w-4" />
-            <span class="overflow-clip text-nowrap text-ellipsis">{section}</span>
+    <div class="mx-auto grid grid-cols-[minmax(0,1fr),5rem]">
+        <div class="flex">
+            <div
+                class={`flex gap-4 px-4 items-center ${modeBgClass} text-base-900 dark:text-base-200 z-10`}
+            >
+                <LucideIcon icon={sectionIcon} class="h-4 w-4" />
+                <span class="overflow-clip text-nowrap text-ellipsis">{section}</span>
+            </div>
+            <div class={pageTitle === undefined ? "" : "bg-lighter"}>
+                <div class="-ml-[6.86px] mr-1">
+                    <div
+                        class={`h-[16.9705627485px] w-[16.9705627485px] ${modeBgClass} rotate-45 origin-[20.4%_50%]`}
+                    >
+                    </div>
+                </div>
+            </div>
+            {
+                pageTitle !== undefined && (
+                    <>
+                        <div class="overflow-clip text-nowrap text-ellipsis gap-4 px-4 items-center bg-lighter z-10">
+                            {pageTitle}
+                        </div>
+                        <div class="-ml-[6.86px] mr-1">
+                            <div class="h-[16.9705627485px] w-[16.9705627485px] bg-lighter rotate-45 origin-[20.4%_50%]" />
+                        </div>
+                    </>
+                )
+            }
+            {
+                headings !== undefined &&
+                    headings.length > 0 &&
+                    headings.map((heading, index) => (
+                        <>
+                            {index > 0 && (
+                                <div class="-ml-[6.86px] mr-1">
+                                    <div class="h-[16.9705627485px] w-[16.9705627485px] border-2 border-base-500 box-border rotate-45 origin-[20.4%_50%] -ml-[6.86px] mr-1" />
+                                </div>
+                            )}
+                            <div class="flex gap-4 px-4 items-center bg-darker z-10">
+                                <span>{heading}</span>
+                            </div>
+                        </>
+                    ))
+            }
         </div>
-        <div class={pageTitle === undefined ? "" : "bg-lighter"}>
-            <div class="-ml-[6.86px] mr-1">
+        <div class="flex justify-end">
+            <div class="-mr-[6.86px] ml-1">
                 <div
-                    class={`h-[16.9705627485px] w-[16.9705627485px] ${modeBgClass} rotate-45 origin-[20.4%_50%]`}
+                    class="h-[16.9705627485px] w-[16.9705627485px] bg-lighter -rotate-45 origin-[79.6%_50%]"
                 >
                 </div>
             </div>
-        </div>
-        {
-            pageTitle !== undefined && (
-                <>
-                    <div class="overflow-clip text-nowrap text-ellipsis gap-4 px-4 items-center bg-lighter z-10">
-                        {pageTitle}
-                    </div>
-                    <div class="-ml-[6.86px] mr-1">
-                        <div class="h-[16.9705627485px] w-[16.9705627485px] bg-lighter rotate-45 origin-[20.4%_50%]" />
-                    </div>
-                </>
-            )
-        }
-        {
-            headings !== undefined &&
-                headings.length > 0 &&
-                headings.map((heading, index) => (
-                    <>
-                        {index > 0 && (
-                            <div class="-ml-[6.86px] mr-1">
-                                <div class="h-[16.9705627485px] w-[16.9705627485px] border-2 border-base-500 box-border rotate-45 origin-[20.4%_50%] -ml-[6.86px] mr-1" />
-                            </div>
-                        )}
-                        <div class="flex gap-4 px-4 items-center bg-darker z-10">
-                            <span>{heading}</span>
-                        </div>
-                    </>
-                ))
-        }
-    </div>
-    <div class="flex justify-end">
-        <div class="-mr-[6.86px] ml-1">
             <div
-                class="h-[16.9705627485px] w-[16.9705627485px] bg-lighter -rotate-45 origin-[79.6%_50%]"
+                class="flex gap-4 px-4 items-center bg-lighter text-base-900 dark:text-base-200 z-10"
             >
+                <pre id="status-line-percentage">0%</pre>
             </div>
-        </div>
-        <div class="flex gap-4 px-4 items-center bg-lighter text-base-900 dark:text-base-200 z-10">
-            <pre id="status-line-percentage">0%</pre>
         </div>
     </div>
 </div>

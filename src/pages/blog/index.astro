@@ -12,7 +12,6 @@ const posts = (await getMainPosts()).sort(
 ---
 
 <Page title="Blog" subtitle="Please read my blog" slug="blog">
-    <StatusLine mode="insert" section="Blog" sectionIcon={Newspaper} />
 	<section class="mb-16">
         <ul class="mx-auto grid md:grid-cols-2 max-w-5xl gap-8 px-8">
             {
@@ -64,4 +63,6 @@ const posts = (await getMainPosts()).sort(
             }
         </ul>
     </section>
+
+	<StatusLine mode="insert" section="Blog" sectionIcon={Newspaper} />
 </Page>

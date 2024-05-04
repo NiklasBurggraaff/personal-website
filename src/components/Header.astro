@@ -6,19 +6,21 @@ import HeaderSocials from "./HeaderSocials.astro";
 
 <header
     class:list={[
-        "sticky top-0 bg-darker relative flex h-12 w-full items-center justify-between",
+        "sticky top-0 bg-darker relative h-12 w-full",
         "z-30 print:absolute print:shadow-none print:border-none",
     ]}
     transition:animate="none"
 >
-    <nav class="h-full flex items-center">
-        <HeaderLink href="/" icon={Home} class="!px-4">
-            <span class="hidden xs:inline md:hidden">NB</span>
-            <span class="hidden md:inline">Niklas Burggraaff</span>
-        </HeaderLink>
-        <HeaderLink href="/blog" icon={Newspaper}> Blog </HeaderLink>
-        <HeaderLink href="/projects" icon={FolderTree}> Projects </HeaderLink>
-        <HeaderLink href="/cv" icon={GraduationCap}> CV </HeaderLink>
-    </nav>
-    <HeaderSocials />
+    <div class="max-w-5xl mx-auto flex items-center justify-between">
+        <nav class="h-full flex items-center">
+            <HeaderLink href="/" icon={Home} class="!px-4">
+                <span class="hidden xs:inline md:hidden">NB</span>
+                <span class="hidden md:inline">Niklas Burggraaff</span>
+            </HeaderLink>
+            <HeaderLink href="/blog" icon={Newspaper}> Blog </HeaderLink>
+            <HeaderLink href="/projects" icon={FolderTree}> Projects </HeaderLink>
+            <HeaderLink href="/cv" icon={GraduationCap}> CV </HeaderLink>
+        </nav>
+        <HeaderSocials />
+    </div>
 </header>
