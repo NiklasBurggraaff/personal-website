@@ -28,23 +28,28 @@ Some of these I have wanted to do for a while and now I want to make the time fo
 1. Upload 10 YouTube videos (at least 5 different "series")
   - 🌱 None uploaded, have many ideas and started practicing editing
   - 📝 Upload a new video each month
-  - 📈 -
+  - 📈
+    - Oct: None
 2. Finish personal website
   - 🌱 Mostly ready, need to finalize, add content, and release
   - 📝 Work on during weekends, releasing before end of 2024
-  - 📈 -
+  - 📈
+    - Oct: None
 3. Publish 10 blog posts
   - 🌱 Few articles I have started, many more ideas
   - 📝 Publish article each month, can be one same topic as video
-  - 📈 -
+  - 📈
+    - Oct: None
 4. Release a project
   - 🌱 Few projects I'm working on including Svelte Runia
   - 📝 Work hard to release soon after Svelte 5 release
-  - 📈 -
+  - 📈
+    - Oct: None
 5. Go to 3 technology conferences/meetups
   - 🌱 Went to EdinburghJS once after finding out about it
   - 📝 Go to 1 in 2024, and 2 in 2025
-  - 📈 -
+  - 📈
+    - Oct: None
 
 ## Financial
 
@@ -53,20 +58,24 @@ great financial situation from the beginning.
 
 6. Track monthly spending
   - 🌱 Have upper limit on total spending and years ago tracked groceries
-  - 📝 Use app to track spending categories from Septembers
-  - 📈 -
+  - 📝 Use app to track spending categories from September
+  - 📈
+    - Oct: Tracked all spending in categories
 7. Develop accurate and realistic budget
   - 🌱 Have estimated budget but don't know how accurate it is
   - 📝 Update budget based on monthly spending
-  - 📈 -
+  - 📈
+    - Oct: Updated budget
 8. Invest savings
   - 🌱 No investments
   - 📝 Invest based on https://flowchart.ukpersonal.finance/
-  - 📈 -
+  - 📈
+    - Oct: Made first investments
 9. Save <redacted> amount of money
   - 🌱 None, as is from income this year
   - 📝 Save a tenth of this amount every month
-  - 📈 -
+  - 📈
+    - Oct: Saved money
 
 ## Physical
 
@@ -82,11 +91,13 @@ I've split the physical category into 3 sub-categories: calories in, strength, a
 10. 2 bulk/cut cycles
   - 🌱 Just completed a cut (86kg -> 82kg) mainly by tracking calories which taught me a lot
   - 📝 Bulk Sep, Oct, Nov; maintain Dec; cut Jan; bulk Feb, Mar, Apr; maintain May; cut Jun
-  - 📈 -
+  - 📈
+    - Oct: Bulking, although I've been eating too much candy
 11. Summer maintanance
   - 🌱 N/A
   - 📝 Cut in June (and potentially July) then maintain to be in great shape over summer
-  - 📈 -
+  - 📈
+    - Oct: N/A
 
 ### Strength
 
@@ -96,19 +107,23 @@ The current progress is based on having gone to the gym for the first time again
 12. Squat 100kg (1.25x body weight) (120kg)
   - 🌱 50kg x 8 reps x 2 sets
   - 📝 [Workout plan](#📝-workout-plan)
-  - 📈 -
+  - 📈
+    - Oct: 80kg x 8 reps x 8 sets
 13. Bench 80kg (1x body weight) (100kg)
   - 🌱 28kg x 12 reps x 3 sets
   - 📝 [Workout plan](#📝-workout-plan)
-  - 📈 -
+  - 📈
+    - Oct: 40kg x 10 reps x 3 sets
 14. Deadlift 120kg (1.5x body weight) (150kg)
   - 🌱 55kg x 10 reps x 4 sets
   - 📝 [Workout plan](#📝-workout-plan)
-  - 📈 -
+  - 📈
+    - Oct: 100kg x 8 reps x 4 sets
 15. Muscle up x5 (based on [Mike Boyd video](https://youtu.be/2CITpNRzwTk?si=RzmXIAc5dtAB91ob))
   - 🌱 1 pullup...
   - 📝 Practice every other week at start of a workout
-  - 📈 -
+  - 📈
+    - Oct: 1 pullup...
 
 ### 📝 Workout plan
 
@@ -151,36 +166,40 @@ Sets per week for main muscle groups:
 16. Run marathon
   - 🌱 Furthest run 22km, but did walk 47km in one day
   - 📝 Running Edinburgh marathon 25th of May
-  - 📈 -
+  - 📈
+    - Oct: Done a few long distance runs
 17. 20min 5k
   - 🌱 PB 21:42 recently after working on improving my cadence
   - 📝 Start training 4:00min/km (or faster) intervals until can do it for 5k
-  - 📈 -
+  - 📈
+    - Oct: 21:30
 18. 1:40 half-marathon
   - 🌱 PB 1:42:34 before I was 18, 2:24:47 last year in zone 2
   - 📝 Complete by training for marathon, and if not train for after may
-  - 📈 -
+  - 📈
+    - Oct: 6:15 min/km in zone 2
 19. \>53 VO2 max
   - 🌱 Improve from 45 to 49 past month
   - 📝 Cardio training for marathon
-  - 📈 -
+  - 📈
+    - Oct: 49.6
 
 ## Other
 
-20. Go on a date
-  - 🌱 Never gone on a first date
-  - 📝 No specific plan, but be open to it
-  - 📈 -
-21. Go on 3 weekend trips abroad
+20. Go on 3 weekend trips abroad
   - 🌱 Never gone on a trip abroad by myself
   - 📝 Go on 1 in 2024 and 2 in 2025, potentially combining with conference
-  - 📈 -
-22. Join sports team
+  - 📈
+    - Oct: None yet
+21. Join sports team
   - 🌱 Played 2 games with Stewkley FC
   - 📝 Find close football/rugby club to join
-  - 📈 -
-23. Finish 4 ASOIAF books (finish A Dance with Dragons)
+  - 📈
+    - Oct: Think I may do this next year as enjoying sports at RB
+22. Finish 4 ASOIAF books (finish A Dance with Dragons)
   - 🌱 Started reading a Clash of Kings
   - 📝 Read before going to sleep
-  - 📈 -
-24. One last personal one I won't share...
+  - 📈
+    - Oct: Not been reading...
+23. ...
+24. Two last personal ones I won't share...
