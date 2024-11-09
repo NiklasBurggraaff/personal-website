@@ -22,6 +22,7 @@ const modeBgClass =
             : "bg-yellow";
 ---
 
+<div class="flex-grow"></div>
 <div
     class="sticky bottom-0 overflow-clip w-full bg-darker font-mono z-20"
     transition:name="status-line"
@@ -46,9 +47,10 @@ const modeBgClass =
             {
                 pageTitle !== undefined && (
                     <>
-                        <div class="overflow-clip text-nowrap text-ellipsis gap-4 px-4 items-center bg-lighter z-10">
-                            {pageTitle}
-                        </div>
+                        <div
+                            class="overflow-clip text-nowrap text-ellipsis gap-4 px-4 items-center bg-lighter z-10"
+                            set:html={pageTitle}
+                        /></div>
                         <div class="-ml-[6.86px] mr-1">
                             <div class="h-[16.9705627485px] w-[16.9705627485px] bg-lighter rotate-45 origin-[20.4%_50%]" />
                         </div>
@@ -126,4 +128,5 @@ const modeBgClass =
     document.addEventListener("astro:page-load", updateStatusLine);
 
     document.addEventListener("scroll", updateStatusLine);
+    document.addEventListener("resize", updateStatusLine);
 </script>

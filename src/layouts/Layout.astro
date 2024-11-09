@@ -45,7 +45,7 @@ const transitionAnimate = Astro.props.transitionAnimate ?? "fade";
             Skip to Content
         </a>
         <Header />
-        <main id="main-content" class="flex-grow">
+        <main id="main-content" class="flex-grow flex flex-col *:w-full">
             <slot />
         </main>
         <Footer />
