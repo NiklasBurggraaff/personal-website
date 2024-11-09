@@ -30,9 +30,8 @@ const { href, class: className, title, description, viewTransitionPrefix, ...pro
             "transition-colors group-hover:text-primary motion-reduce:group-hover:transform-none",
         ]}
         transition:name={viewTransitionPrefix ? `${viewTransitionPrefix}-title` : ""}
-    >
-        {title}
-    </h5>
+        set:html={title}
+    />
     {description && <p class="lead">{description}</p>}
 
     <slot />
