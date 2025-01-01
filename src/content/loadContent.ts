@@ -54,14 +54,18 @@ export async function getMainPosts(): Promise<CollectionEntry<"blog" | "series">
     const blogsPromise = getCollection("blog");
     const seriesPromise = getSeries();
 
-    const seriesMain = (await seriesPromise).filter((entry) => entry.data.main);
+    const [blogs, series] = await Promise.all([blogsPromise, seriesPromise]);
 
-    return [...(await blogsPromise), ...seriesMain];
+    const seriesMain = series.filter((entry) => entry.data.main);
+
+    return [...blogs, ...seriesMain];
 }
 
 export async function getAllPosts(): Promise<CollectionEntry<"blog" | "series">[]> {
     const blogs = getCollection("blog");
     const series = getSeries();
 
-    return [...(await blogs), ...(await series)];
+    const [blogsResult, seriesResult] = await Promise.all([blogs, series]);
+
+    return [...blogsResult, ...seriesResult];
 }

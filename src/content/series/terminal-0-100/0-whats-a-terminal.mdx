@@ -27,22 +27,20 @@ Well that is simple:
 
 Thank you for reading and see you in the next part: [1. Running your first commands](.).
 
-<div class="h-[50vh] min-h-48 flex flex-col justify-around items-center print:hidden">
-    <div>
-        <LucideIcon icon={CircleChevronDown} class="animate-bounce"></LucideIcon>
-    </div>
-    <div></div>
-</div>
+<br/>
+<LucideIcon icon={CircleChevronDown} class="animate-bounce motion-reduce:animate-none block mx-auto"></LucideIcon>
+
+<div class="h-[33vh] min-h-48"></div>
 
 > Hold on!
 
 That explanation probably just raised more questions than it answered. To answer those questions
-it's probably best to go all the way back to the beginning when the first computers were built.
+it's probably best to go back to the beginning when the first computers were built.
 
-We'll discover the origin and particularly semantic changes of these terms. Even if you know what
+We'll discover the origin and semantic changes of these terms. Even if you know what
 they mean you may still learn something interesting. Along the way I'll hopefully also provide some
 motivation for why to still use a terminal. Although you probably already have reasons given you are
-reading this.
+reading this...
 
 ## History of computers
 
@@ -52,30 +50,31 @@ reading this.
 />
 
 The ENIAC (1946) was the first general purpose computer. It was programmed by setting switches and
-connecting wires on the numerous panels. Card punch readers and card punch machines were used to
-provide the inputs and outputs for the program.
-([https://www.youtube.com/watch?v=bGk9W65vXNA](https://www.youtube.com/watch?v=bGk9W65vXNA))
+connecting wires on the numerous control panels. Card punch readers and card punch machines were used to
+provide the inputs and outputs for the program [[x](https://www.youtube.com/watch?v=bGk9W65vXNA)].
 
 <Figure
     src="https://upload.wikimedia.org/wikipedia/commons/5/55/Museum_of_Science%2C_Boston%2C_MA_-_IMG_3163.JPG"
     caption="UNIVAC I control station, in Museum of Science, Boston"
 />
 
-With the release of the UNIVAC I (1951) it no longer needed to be programmed with physical switches
-and wires. Instead the instructions to execute by the computer were stored in memory with the data
-([https://en.wikipedia.org/wiki/UNIVAC_I](https://en.wikipedia.org/wiki/UNIVAC_I)), an idea
-introduced by John von Neumann ([wiki page](https://en.wikipedia.org/wiki/Von_Neumann_architecture))
+With the release of the UNIVAC I (1951), the instructions to execute by the computer
+were stored in memory with the data [[x](https://en.wikipedia.org/wiki/UNIVAC_I)].
+An idea introduced by John von Neumann [[x](https://en.wikipedia.org/wiki/Von_Neumann_architecture)]
 still used today.
 
+The panels of switches and wires were replaced with a new type of panel, the **operator console**.
+It allowed an operator to control the computer and display the data stored in memory.
+
+The term likely comes from the term **console table**.
+
 <Definition
-    word="Console"
+    word="Console table"
     type="dictionary"
-    description="(noun) a panel or unit accommodating a set of controls for electronic or mechanical equipment"
+    description="a table top supported by ornamented brackets against a wall"
 />
 
-The panels of switches and wires was replaced with a new type of panel, the operator console. It
-allowed an operator to control the computer and display the data stored in memory. The term was
-based on the dictionary definition above.
+The following became the original usage of the term **console**.
 
 <Definition
     word="Console"
@@ -90,16 +89,18 @@ based on the dictionary definition above.
 />
 
 Another device that was connected to computers was the teleprinter, also known as a teletypewriter,
-or TTY (linux reference on hover) for short.
+or TTY {/*(linux reference on hover)*/} for short.
+Initially a teleprinter could only be used to input data into the computer.
+Then the Whilrwind Mark I (1955) became the first computer to be able to
+print output results to a teleprinter
+[[x](https://en.wikipedia.org/wiki/Computer_terminal#History)].
 
-Initially a teleprinter could only be used to input data into the computer. Then the Whilrwind Mark
-I (1955) became the first computer to be able to print output results to a teleprinter.
-([https://en.wikipedia.org/wiki/Computer_terminal#History](https://en.wikipedia.org/wiki/Computer_terminal#History))
+These became known as **terminals**, based on the dictionary definition of being at the end of something.
 
 <Definition
     word="Terminal"
     type="historic"
-    description="Device that can be used for entering data into, and transcribing data from, a computer"
+    description="device that can be used for entering data into, and transcribing data from, a computer"
 />
 
 <Definition
@@ -113,11 +114,248 @@ I (1955) became the first computer to be able to print output results to a telep
     caption="IBM 2260 terminal in front of an IBM 360/40"
 />
 
-Then screen and keyboard making it look like a personal computer 1964.
+With the release of the IBM 2260 (1964) the screen and keyboard were added to the terminal.
+This is when computers started looking like the personal computers of today.
+The screens were 80 characters wide, matching the IBM punch card format
+[[x](https://en.wikipedia.org/wiki/IBM_2260)].
 
-Man behind terminal with keyboard and screen. Man by operator console with switches and lights.
+To illustrate the difference between the terminal and the console,
+the man behind the keyboard and screen is behind the terminal.
+The man in the back is by the operator console with its switches and lights.
 
-80 character limit matches IBM punch card format
-([https://en.wikipedia.org/wiki/IBM_2260](https://en.wikipedia.org/wiki/IBM_2260))
+Game consoles also get their name from consoles at this time.
+The Brown Box (1967), the first game console prototype, had knobs and switches for controls,
+similar to a console [[x](https://www.history.com/topics/inventions/history-of-video-games)].
 
 ### How a terminal worked
+
+<Figure
+    src="/blog/IBM-IO.png"
+    caption="Figure 1. How the system works from the IBM System/360 Operating System Operator's Guide"
+/>
+
+The keyboard of the terminal could be used to type commands, the *input stream*.
+When programs were executed they could display any results on the screen, the *output stream*
+Initially computers could only handle one input and output stream.
+It was, however, possible to change which terminal was active.
+[[x](https://bitsavers.org/pdf/ibm/360/operatingGuide/C28-6540-5_360_operGuide.pdf)].
+
+This changed with the release of the CTSS (Compatible Time-Sharing System) in 1961.
+It allowed multiple users on different terminals to share the same computer
+[[x](https://en.wikipedia.org/wiki/Compatible_Time-Sharing_System)].
+
+Eventually the operator console with its switches and lights was replaced by a terminal.
+This terminal would be the only on that could receive system error messages and
+be used to recover systems [[7](https://www.linfo.org/console.html)].
+With the evolution of operating systems, the console became any terminal with a privileged user logged on
+[[x](https://en.wikipedia.org/wiki/System_console)].
+
+<Definition
+    word="Console"
+    type="historic"
+    typeNumber="2"
+    description="terminal used to monitor the status of the system"
+/>
+
+From this point computers massively evolved from the mainframes requiring whole rooms,
+to minicomputers, and finally to personal computers.
+With personal computers the number of teriminals became just 1, so the only terminal would also be a console.
+This made the usage of the two terms interchangeable
+[[x](https://www.linfo.org/console.html)].
+
+<Definition
+    word="Console"
+    type="historic"
+    typeNumber="3"
+    description="the combination of the display monitor and a keyboard connected to a computer"
+/>
+
+## Origin of the Shell
+
+The shell is another term that often gets mixed up with a terminal (or console).
+It is however a completely different concept.
+Unlike the other definitions, the origin of shell comes directly from a scientific paper.
+
+To start with, this is the dictionary definition of the word shell.
+
+<Definition
+    word="Shell"
+    type="dictionary"
+    description="(noun) hard protective outer case"
+/>
+
+Louis Pouzin developed many commands for the CTSS operating system.
+At some point he thought commands should be able to be used as building blocks for other commands
+[[x](https://multicians.org/shell.html)].
+
+This led him to write the paper
+"The SHELL: A Global Tool for Calling and Chaining Procedures in the System" (1965).
+
+> We may envision a common procedure called automatically by the **supervisor** whenever a user types in some message at his console, at a time when he has no other process in active execution under console control. This procedure acts as an interface between console messages and **subroutine**. The purpose of such a procedure is to create a medium of exchange into which one could activate any procedure, as if it was called from the inside of another program. Hereafter, for simplification, we shall refer to that procedure as the 'SHELL'.
+
+[[x](https://people.csail.mit.edu/saltzer/Multics/Multics-Documents/MDN/MDN-4.pdf)]
+
+Like a physical shell, the shell program provides a layer of protection/abstraction between procedures.
+
+<Definition
+    word="Shell"
+    type="modern"
+    description="program called when user types command interfacing between terminal or console and operating system"
+/>
+
+Another significant quote from the paper is:
+
+> An important facility is that the SHELL being itself a common procedure may be replaced by a private one supplied by the user.
+
+This is definitely something that happened...
+
+5 days after the first paper, Pouzin published another paper "RUNCOM • A Macro-Procedure Processor for the 636 System" (1965).
+In this paper he describes the first implementation of a shell,
+RUNCOM, short for run command, or just `rc`
+(this is where rc comes from in files like `.bashrc`, `zshrc`, and `.vimrc`).
+
+It allowed you to create a file with commands to run on each line, building a new macro command.
+Arguments could be provided, and then used in the commands in the file.
+
+The papers written by Pouzin were used in the development of the shell for the MULTICS operating system (1969)
+[[x](https://multicians.org/shell.html)].
+This is the operating system Unix was based on.
+Ken Thompson wrote the Thompson shell for the first version of Unix (1971), based on MULTICS.
+
+The Thompson shell introduced the idea of pipes.
+Pipes allowed you to chain commands together, and the output of one command could be used as input for another
+[[x](https://en.wikipedia.org/wiki/Thompson_shell)].
+
+Later, Stephen Bourne developed the Bourne shell (sh) for the first readily portable version of unix (1979)
+[[x](https://en.wikipedia.org/wiki/Bourne_shell)].
+From this point, a large number of derivative shells were developed.
+
+![Shell history](/blog/shell-history.png)
+
+<details>
+<summary>Shell History Details</summary>
+The C Shell (`csh`) has a syntax that resembles C created in 1978 by Bill Joy (who also developed the `vi` editor).
+It had many ease of use features not available in other shells.
+The Korn shell (`ksh`) is a superset of the Bourne shell developed by David Korn at Bell Labs in 1983
+[[x](https://www.linfo.org/shell.html)].
+
+In 1992 the the IEEE standard operting system POSIX was developed.
+The POSIX shell was largerly based on the Korn shell
+[[x](https://pubs.opengroup.org/onlinepubs/9699919799/utilities/V3_chap02.html)].
+This effectivelly killed the C shell, even though it had many useful features.
+
+The Bourne Again Shell (`bash`) was a reimplementation of the Bourne shell for the GNU project
+The GNU project (1985) was a project to develop a completely open source POSIX compliant operating system
+[[x](https://www.linfo.org/gnu.html)].
+
+Two other popular shells are the Z shell (`zsh`) which is similar to the Korn shell,
+but bringing back many features from the C shell.
+And the `fish` shell which is a modern shell with a focus on simplicity and speed.
+However, keep in mind `zsh` and `fish` are not POSIX compliant, deviating from the standard interntionally
+with the aim of improving the user experience.
+[[x](https://www.linfo.org/shell.html)].
+</details>
+
+The idea of Pouzin to allow the shell program to be replaced by the user
+led to the development of many shells.
+These shells are implemented features and ideas leading improving the use of the shell.
+Shells became the way humans interacted with computers in the 1960s and 1970s.
+
+This all started to change after "The Mother of All Demos".
+
+## Semantic Changes
+
+<Figure
+    src="https://upload.wikimedia.org/wikipedia/commons/0/04/SRI_Douglas_Engelbart_1968.jpg"
+    caption="Engelbart practicing for the demo"
+/>
+
+This was a 90 minute demonstration in 1968 by the Stanford Research Institute's Augmentation Research Center
+on the NLS (oN-Line System) system.
+This was a revolutionary new system that completely changed the way humans interacted with computers.
+
+The system first demonstrated the idea of a mouse.
+This allowed moving a bug (now called a cursor) around the screen which 
+together with the keyboard allowed the user to operate the computer.
+This was essentially the first Graphical User Interface (GUI)
+[[x](https://en.m.wikipedia.org/wiki/The_Mother_of_All_Demos)].
+
+In 1973 Xerox Palo Alto Research Center (PARC) introduced the Xerox Alto.
+This was one of the first personal computers, meaning it only supported one user.
+It was heavily inspired by the NLS system.
+Having a black and white screen for output and keyboard and mouse for input.
+The main change introduced was that it did not have a command line interface (CLI).
+All interaction was done through a GUI.
+[[x](https://en.wikipedia.org/wiki/Xerox_Alto)]
+
+The following table highlights the differences between a GUI and CLI.
+| | Input | Output |
+|-|-|-|
+| Command line interface | Keyboard | Text |
+| Graphical user interface | Keyboard and mouse | Window, icons, and menus |
+[[x](https://www.linfo.org/command_line_interface.html)]
+
+Unfortunately the Xerox Alto did not become a successful product.
+However, after having been shown demonstrations of the Alto in 1979,
+one made used many of the concepts introduced by the Alto.
+
+<Figure
+    src="https://guide-images.cdn.ifixit.com/igi/VxuUZDJTYjNQZ1QK.medium"
+    caption="Picture of Lisa with LisaTerminal open"
+/>
+
+This man wsa Steve Jobs, who with apple released the Lisa in 1983.
+The Lisa is considered the first mass-market personal computer with a GUI
+[[x](https://en.wikipedia.org/wiki/Apple_Lisa)].
+
+The LisaTerminal was an application on the Lisa.
+It was a terminal unlike any other mentioned until now, it was namely a terminal emulator.
+As the Lisa Operating System used a GUI, there was no CLI to type commands into.
+Instead LisaTerminal is a window in a GUI that immitates older CLI terminals
+[[x](https://bitsavers.org/pdf/apple/lisa/office_system/A6L0147_LisaTerminal_1983.pdf)].
+This gave user the ability to alongside using the GUI, to also use a CLI.
+
+Having previously meant the same, the word console is now used to refer to the older CLI terminals.
+
+<Definition
+    word="Console"
+    type="modern"
+    description="is an all-text mode user interface that occupies the entire screen of the display device and which does not sit on top of a GUI"
+/>
+
+The Lisa was followed up by the significantly cheaper Macintosh in 1984,
+the first commercially successful personal computer with a GUI.
+Since the Macintosh the GUI was adopted by most other operating systems
+[[x](https://www.linfo.org/gui.html)].
+An example of this is the release of Windows 1.0 in 1985
+[[x](https://en.wikipedia.org/wiki/Windows_1.0)].
+
+As computers today still use GUIs, this is where we get the current definition of terminal.
+
+<Definition
+    word="Terminal"
+    type="modern"
+    description="A terminal (or terminal emulator to be specific) is a graphical user interface application that provides users a command line interface to interact with the shell, similar to a console."
+/>
+
+## Why still use a terminal?
+
+Now you hopefully have a idea of how we got to the terminals we know today.
+But you may still wonder why when we have nice GUIs, why do we still use a terminal?
+
+Firstly terminals can still be more powerful than GUIs.
+Through the shell, the operating system exposes a lot of functionality to the user.
+This means you don't have to realy on the GUI providing the same functionality,
+something likely not possible with everything.
+
+Secondly, it can be more efficient that a GUI.
+You may have heard it can be more efficient to just stay typing on your keyboard,
+instead of switching between your keyboard and mouse.
+Although this is true, a bigger factor is how ther terminal is extremely customizable.
+From being able to easily create shell scripts combining multiple commands,
+to customizing shortcuts and keybindings.
+
+<br/>
+
+With you now hopefully conviced a terminal is useful,
+you can continue to the start of this series to learn more about how to use your terminal.
