@@ -4,6 +4,7 @@ import BlogPost from "../../layouts/BlogPost.astro";
 import { getAllPosts } from "../../content/loadContent";
 import SeriesEntry from "../../layouts/SeriesEntry.astro";
 import SeriesMain from "../../layouts/SeriesMain.astro";
+import BaseHead from "../../components/BaseHead.astro";
 
 export async function getStaticPaths() {
     const posts = await getAllPosts();
@@ -39,17 +40,18 @@ function isSeriesMain(post: Props) {
 }
 ---
 
+<BaseHead title={post.data.title + " | NB"} description={post.data.description} />
 {
     isSeries(post) ? (
         isSeriesMain(post) ? (
-            <SeriesMainPost slug={post.slug} {...post.data}>
+            <SeriesMain slug={post.slug} {...post.data}>
                 <Content />
-            </SeriesMainPost>
+            </SeriesMain>
         ) : (
             // @ts-expect-error
-            <SeriesEntryPost slug={post.slug} {...post.data}>
+            <SeriesEntry slug={post.slug} {...post.data}>
                 <Content />
-            </SeriesEntryPost>
+            </SeriesEntry>
         )
     ) : (
         <BlogPost slug={post.slug} {...post.data}>
