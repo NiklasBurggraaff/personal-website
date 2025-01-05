@@ -1,22 +1,21 @@
 import { defineCollection, z } from "astro:content";
 
-const blog = defineCollection({
-    type: "content",
-    // Type-check frontmatter using a schema
-    schema: z.object({
-        title: z.string(),
-        description: z.string(),
-        // Transform string to Date object
-        pubDate: z.coerce.date(),
-        updatedDate: z.coerce.date().optional(),
-        series: z.literal(false).default(false),
-    }),
-});
-
-export const seriesMain = z.object({
-    main: z.literal(true).default(true),
+export const blogSchema = z.object({
+    published: z.boolean().default(false),
     title: z.string(),
     description: z.string(),
+    pubDate: z.coerce.date(),
+    updatedDate: z.coerce.date().optional(),
+});
+export type BlogPost = z.infer<typeof blogSchema>;
+
+const blog = defineCollection({
+    type: "content",
+    schema: blogSchema,
+});
+
+export const seriesMain = blogSchema.extend({
+    main: z.literal(true).default(true),
     groups: z
         .record(
             z.string().refine((group) => {
@@ -51,17 +50,11 @@ export const seriesMain = z.object({
             }
             return groups;
         }),
-    pubDate: z.coerce.date(),
-    updatedDate: z.coerce.date().optional(),
     series: z.literal(true).default(true),
 });
-export const seriesEntry = z.object({
+export const seriesEntry = blogSchema.extend({
     main: z.literal(false).default(false),
     index: z.number().int(),
-    title: z.string(),
-    description: z.string(),
-    pubDate: z.coerce.date(),
-    updatedDate: z.coerce.date().optional(),
     series: z.literal(true).default(true),
 });
 export type SeriesMain = z.infer<typeof seriesMain>;

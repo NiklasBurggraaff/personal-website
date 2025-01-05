@@ -6,7 +6,9 @@ type Overwrite<T, U> = Pick<T, Exclude<keyof T, keyof U>> & U;
 export async function getSeries() {
     const series = await getCollection("series");
 
-    const seriesMains = series.filter((entry) => entry.data.main) as Overwrite<
+    const publishedSeries = series.filter((entry) => entry.data.published);
+
+    const seriesMains = publishedSeries.filter((entry) => entry.data.main) as Overwrite<
         CollectionEntry<"series">,
         { data: SeriesMain }
     >[];
@@ -50,8 +52,14 @@ export async function getSeriesEntries(name: string) {
     };
 }
 
+export async function getBlogPosts() {
+    const posts = await getCollection("blog");
+
+    return posts.filter((entry) => entry.data.published);
+}
+
 export async function getMainPosts(): Promise<CollectionEntry<"blog" | "series">[]> {
-    const blogsPromise = getCollection("blog");
+    const blogsPromise = getBlogPosts();
     const seriesPromise = getSeries();
 
     const seriesMain = (await seriesPromise).filter((entry) => entry.data.main);
@@ -60,7 +68,7 @@ export async function getMainPosts(): Promise<CollectionEntry<"blog" | "series">
 }
 
 export async function getAllPosts(): Promise<CollectionEntry<"blog" | "series">[]> {
-    const blogs = getCollection("blog");
+    const blogs = getBlogPosts();
     const series = getSeries();
 
     return [...(await blogs), ...(await series)];
