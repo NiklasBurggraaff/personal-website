@@ -18,7 +18,7 @@ export async function getSeries() {
         seriesTitles[entry.slug] = entry.data.title;
     }
 
-    return series.map((entry) => {
+    return publishedSeries.map((entry) => {
         const seriesSlug = entry.slug.split("/")[0];
         const seriesTitle = seriesTitles[seriesSlug];
 
@@ -62,14 +62,18 @@ export async function getMainPosts(): Promise<CollectionEntry<"blog" | "series">
     const blogsPromise = getBlogPosts();
     const seriesPromise = getSeries();
 
-    const seriesMain = (await seriesPromise).filter((entry) => entry.data.main);
+    const [blogs, series] = await Promise.all([blogsPromise, seriesPromise]);
 
-    return [...(await blogsPromise), ...seriesMain];
+    const seriesMain = series.filter((entry) => entry.data.main);
+
+    return [...blogs, ...seriesMain];
 }
 
 export async function getAllPosts(): Promise<CollectionEntry<"blog" | "series">[]> {
     const blogs = getBlogPosts();
     const series = getSeries();
 
-    return [...(await blogs), ...(await series)];
+    const [blogsResult, seriesResult] = await Promise.all([blogs, series]);
+
+    return [...blogsResult, ...seriesResult];
 }
