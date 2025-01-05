@@ -18,7 +18,7 @@ export async function getSeries() {
         seriesTitles[entry.slug] = entry.data.title;
     }
 
-    return series.map((entry) => {
+    return publishedSeries.map((entry) => {
         const seriesSlug = entry.slug.split("/")[0];
         const seriesTitle = seriesTitles[seriesSlug];
 
