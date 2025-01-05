@@ -21,19 +21,35 @@ type Props = CollectionEntry<"blog" | "series">;
 
 const post = Astro.props;
 const { Content } = await post.render();
+
+function isSeries(post: Props) {
+    if ("series" in post.data) {
+        return post.data.series;
+    }
+
+    return false
+}
+
+function isSeriesMain(post: Props) {
+    if ("main" in post.data) {
+        return post.data.main;
+    }
+
+    return false
+}
 ---
 
 {
-    post.data.series ? (
-        post.data.main ? (
-            <SeriesMain slug={post.slug} {...post.data}>
+    isSeries(post) ? (
+        isSeriesMain(post) ? (
+            <SeriesMainPost slug={post.slug} {...post.data}>
                 <Content />
-            </SeriesMain>
+            </SeriesMainPost>
         ) : (
             // @ts-expect-error
-            <SeriesEntry slug={post.slug} {...post.data}>
+            <SeriesEntryPost slug={post.slug} {...post.data}>
                 <Content />
-            </SeriesEntry>
+            </SeriesEntryPost>
         )
     ) : (
         <BlogPost slug={post.slug} {...post.data}>
