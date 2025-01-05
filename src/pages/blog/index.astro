@@ -1,68 +1,70 @@
 ---
 import Page from "../../layouts/Page.astro";
 import LinkCard from "../../components/LinkCard.astro";
-import Prose from "../../components/Prose.astro";
 import { getMainPosts } from "../../content/loadContent";
 import StatusLine from "../../components/StatusLine.astro";
 import { Newspaper } from "lucide";
+import BaseHead from "../../components/BaseHead.astro";
 
 const posts = (await getMainPosts()).sort(
     (a, b) => b.data.pubDate.valueOf() - a.data.pubDate.valueOf()
 );
 ---
 
+<BaseHead title="Blog | Niklas Burggraaff" description="Please read my blog" />
 <Page title="Blog" subtitle="Please read my blog" slug="blog">
-	<section class="mb-16">
+    <section class="mb-16">
         <ul class="mx-auto grid md:grid-cols-2 max-w-5xl gap-8 px-8">
             {
+		// @ts-expect-error
                 posts.map(({ slug, data: {title, description, pubDate, series} }) => (
-					<li class="list-none flex justify-center">
-						<LinkCard
-							href={"/blog/" + slug}
-							class="relative flex-1"
-							{title}
-							{description}
-							viewTransitionPrefix={slug}
-						>
-							<date
-								slot="header"
-								class="text-[0.8em] text-base-500"
-								transition:name={`${slug}-date`}
-								datetime={pubDate}
-							>
-								{pubDate.toLocaleDateString(undefined, {
-									day: "numeric",
-									month: "short",
-									year: "numeric",
-								})}
-							</date>
-							{series && (
-								<div
-									class="absolute left-2 top-2 -z-10 h-full w-full rounded-3xl bg-inherit
-									border border-base-300 dark:border-base-800
-									transition-transform group-hover:-rotate-2
-									motion-reduce:transition-none motion-reduce:hover:transform-none"
-									aria-hidden="true"
-								/>
-								<div
-									class="absolute left-1 top-1 -z-10 h-full w-full rounded-3xl bg-inherit
-									border border-base-300 dark:border-base-800
-									transition-transform group-hover:-rotate-1
-									motion-reduce:transition-none motion-reduce:hover:transform-none"
-									aria-hidden="true"
-								/>
-								<div
-									class="absolute left-0 top-0 -z-10 h-full w-full rounded-3xl
-									border border-base-300 dark:border-base-800 bg-inherit"
-									aria-hidden="true"
-								/>
-							)}
-						</LinkCard>
-					</li>
+                    <li class="list-none flex justify-center">
+                        <LinkCard
+                            href={"/blog/" + slug}
+                            class="relative flex-1"
+                            {title}
+                            {description}
+                            viewTransitionPrefix={slug}
+                        >
+                            <date
+                                slot="header"
+                                class="text-[0.8em] text-base-500"
+                                transition:name={`${slug}-date`}
+                                datetime={pubDate}
+                            >
+                                {pubDate.toLocaleDateString(undefined, {
+                                    day: "numeric",
+                                    month: "short",
+                                    year: "numeric",
+                                })}
+                            </date>
+                            {series && (
+                                <div
+                                    class="absolute left-2 top-2 -z-10 h-full w-full rounded-3xl bg-inherit
+                                    border border-base-300 dark:border-base-800
+                                    transition-transform group-hover:-rotate-2
+                                    motion-reduce:transition-none motion-reduce:hover:transform-none"
+                                    aria-hidden="true"
+                                />
+                                <div
+                                    class="absolute left-1 top-1 -z-10 h-full w-full rounded-3xl bg-inherit
+                                    border border-base-300 dark:border-base-800
+                                    transition-transform group-hover:-rotate-1
+                                    motion-reduce:transition-none motion-reduce:hover:transform-none"
+                                    aria-hidden="true"
+                                />
+                                <div
+                                    class="absolute left-0 top-0 -z-10 h-full w-full rounded-3xl
+                                    border border-base-300 dark:border-base-800 bg-inherit"
+                                    aria-hidden="true"
+                                />
+                            )}
+                        </LinkCard>
+                    </li>
                 ))
             }
         </ul>
     </section>
 
-	<StatusLine mode="insert" section="Blog" sectionIcon={Newspaper} />
+    <StatusLine mode="insert" section="Blog" sectionIcon={Newspaper} />
 </Page>
