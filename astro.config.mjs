@@ -3,6 +3,8 @@ import mdx from "@astrojs/mdx";
 import sitemap from "@astrojs/sitemap";
 import tailwind from "@astrojs/tailwind";
 import svelte from "@astrojs/svelte";
+import remarkMath from 'remark-math';
+import rehypeMathjax from 'rehype-mathjax';
 
 import icon from "astro-icon";
 
@@ -12,5 +14,9 @@ export default defineConfig({
     integrations: [mdx(), sitemap(), tailwind(), svelte(), icon()],
     image: {
         remotePatterns: [{ protocol: "https" }],
+    },
+    markdown: {
+        remarkPlugins: [remarkMath],
+        rehypePlugins: [rehypeMathjax],
     },
 });

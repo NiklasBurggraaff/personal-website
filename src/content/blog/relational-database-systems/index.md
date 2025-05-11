@@ -1,12 +1,12 @@
 ---
+published: true
 title: The "Relations" in Relational Databases
 description: There are no relations between tables, the tables are the relations.
 pubDate: 2024-04-29
 ---
 
-There are many types of databases, but one of the most common and widely used is
-the relational database. This is the type used by database systems using SQL.
-
+There are many types of databases, the most commons of which is relational databases.
+This is the type used by database systems using SQL.
 When googling "relational database", ignoring wikipedia (for now...),
 the definitions from the top results (including AWS, Google Cloud, and Oracle)
 are along the lines of:
@@ -15,7 +15,7 @@ are along the lines of:
 
 This made sense to me.
 I mean, it's called a "relational" database which I know uses tables,
-so it must be about the relations between tables, right?
+so it must be about the relations between tables. Right?
 
 <!--
 > A relational database is a type of database that stores and provides access to data points that are related to one another. Relational databases are based on the relational model, an intuitive, straightforward way of representing data in tables (Oracle)
@@ -43,27 +43,23 @@ so it must be about the relations between tables, right?
 <https://www.w3schools.com/mysql/mysql_rdbms.asp>
 -->
 
-Wrong!
-
+However, that is not why they're called "relational" databases.
 Coming back to Wikipedia, the first sentence of the article on relational databases is:
 
 > A relational database (RDB) is a database based on the relational model of data, as proposed by E. F. Codd in 1970
 
 <!-- <https://en.wikipedia.org/wiki/Relational_database> -->
 
-In relational databases data is actually stored in "relations", not tables.
-Well actually... relations, also known as tables.
-
-But what are these "relations"?
+This is a more accurate description but what does this mean?
+What is the relational model of data?
 
 ## Functions
 
-You might be wondering, why are you talking about functions?
-I wanted to read about databases, not math.
-Wait you mean math functions, not programming functions?
-Well that's the catch, the "relations" in relational databases is actually mathematical.
+The relation model is a mathematical concept.
+So, unfortunately, we have to talk a bit about maths.
+Starting with functions.
 
-A simple function you hopefully all understand is
+An example of a simple function is
 
 $$
 y = x + 1
@@ -71,7 +67,7 @@ $$
 
 ![Graph showing the function y = x + 1](linear-function.png)
 
-Here each input, $x$, is produces an output, $y$, by adding 1 to the input.
+Each input, $x$, is produces an output, $y$, by adding 1 to the input.
 
 The domain of the function is the set of all possible inputs,
 while the range is the set of all possible outputs.
@@ -87,7 +83,9 @@ This function is not one-to-one, as multiple inputs can have the same output.
 For example when $x = 2$ and $x = -2$, $y = 4$.
 Therefore this function is a many-to-one relation.
 
-Now consider the equation for a unit circle $y^2 + x^2 = 1$.
+Now consider the equation for a unit circle 
+
+$$y^2 + x^2 = 1$$
 
 ![Graph showing the equation y^2 + x^2 = 1](circle-equation.png)
 
@@ -138,6 +136,11 @@ the set of $(x, y)$ pairs of integers on the unit circle, is
 
 ${ (0, 1), (0, -1), (1, 0), (-1, 0) }$
 
+<!-- 
+Rather officially:
+${ {0, {0, 1}}, {0, {0, -1}}, {1, {1, 0}}, {-1, {-1, 0}}}$
+-->
+
 What we are doing here is selecting the pairs of elements that are connected,
 from all possible pairs of elements.
 That is, this is a subset of all possible pairs of elements
@@ -155,3 +158,4 @@ Now let me just format the pairs of elements better...
 Oh hey! Look at that! It's a table!
 
 ## Tables (a.k.a. Relationships)
+
